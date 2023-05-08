@@ -12,11 +12,12 @@
     </script>
     <link rel="stylesheet" href="{{asset('css/header.css')}}" />
     <title>Document</title>
+    @yield('estilos')
 </head>
 <body>
     <div class="row" id="navbar">
         <div class="col-8">Sis-parqueo</div>
-        <div class="col-2">inicio</div>
+        <a href="#" class="col-2" id="inicio">inicio</a>
         <a href="{{route('logout')}}" class="col-2">logout</a>
     </div>
     <div>

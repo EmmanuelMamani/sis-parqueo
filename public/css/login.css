@@ -4,24 +4,31 @@ body{
 #formulario{
     border: 1px solid black;
     background-color: #F9CD16;
-    padding: 2%;
-    width: 40%;
-    margin-top: 10%;
-    margin-left: 30%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+    padding-top: 2%;
+    width: 50%;
+    margin-top: 7%;
+    margin-left: 25%;
     border-radius: 20px;
 }
  .input{
-    margin-top: 2%;
+    margin-top: 5%;
     border-radius: 10px;
  }
  h3{
+    margin-bottom: 2%;
     text-align: center;
+    color: #021730;
  }
- #acceder{
+ #acceder,#cancelar{
+   display: block;
+   text-decoration: none;
     color: white;
     background-color: #021730;
     width: 100%;
-    margin-top: 2%;
+    margin-top: 20%;
     border-radius: 10px;
  }
  a{
@@ -30,4 +37,13 @@ body{
     color: #021730;
     text-align: center;
     text-decoration: none;
+ }
+ .label{
+   margin-top: 1%;
+   color: #021730;
+ }
+ #imagen{
+   margin-top: 7%;
+   width: 50%;
+   margin-left: 25%;
  }

@@ -1,0 +1,12 @@
+#opciones{
+    margin-top: 1%;
+    width: 100%;
+}
+.opcion{
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 2%;
+    display: block;
+    background-color: #F9CD16;
+    border-radius: 20px;
+}
