@@ -20,59 +20,64 @@
        <img id="imagen" src="https://previews.123rf.com/images/bigmouse/bigmouse1706/bigmouse170600043/80269250-zonas-urbanas-de-estacionamiento-de-dibujos-animados-con-dise%C3%B1o-de-vista-superior-de-cars-de-color.jpg" alt="">
     </div>
     <div class="col" id="solicitar">
-        <h3>Solicitar Parqueo</h3>
-        <label>Vehiculo</label><br>
-        <select name="vehiculo" class="form-select">
-            <option value="1">Corolla  145SDE</option>
-        </select>
-        <label>Fecha de reserva</label><br>
-        <input type="date" name="entrada" class="form-control ">
-        <label>Hora de entrada</label><br>
-        <select name="vehiculo" class="form-select">
-            <option value="06:00">06:00</option>
-            <option value="07:00">07:00</option>
-            <option value="08:00">08:00</option>
-            <option value="09:00">09:00</option>
-            <option value="10:00">10:00</option>
-            <option value="11:00">11:00</option>
-            <option value="12:00">12:00</option>
-            <option value="13:00">13:00</option>
-            <option value="14:00">14:00</option>
-            <option value="15:00">15:00</option>
-            <option value="16:00">16:00</option>
-            <option value="17:00">17:00</option>
-            <option value="18:00">18:00</option>
-            <option value="19:00">19:00</option>
-            <option value="20:00">20:00</option>
-            <option value="21:00">21:00</option>
-        </select>
-        <label>Hora de salida</label><br>
-        <select name="vehiculo" class="form-select">
-            <option value="07:00">07:00</option>
-            <option value="08:00">08:00</option>
-            <option value="09:00">09:00</option>
-            <option value="10:00">10:00</option>
-            <option value="11:00">11:00</option>
-            <option value="12:00">12:00</option>
-            <option value="13:00">13:00</option>
-            <option value="14:00">14:00</option>
-            <option value="15:00">15:00</option>
-            <option value="16:00">16:00</option>
-            <option value="17:00">17:00</option>
-            <option value="18:00">18:00</option>
-            <option value="19:00">19:00</option>
-            <option value="20:00">20:00</option>
-            <option value="21:00">21:00</option>
-            <option value="22:00">22:00</option>
-        </select>
-        <div class="row">
-            <div class="col">
-                <a href="{{route('menu')}}" id="cancelar" class="btn">Cancelar</a>
+        <form action="{{route('solicitud_parqueo')}}" method="post">
+            @csrf
+            <h3>Solicitar Parqueo</h3>
+            <label>Vehiculo</label><br>
+            <select name="vehiculo" class="form-select">
+                @foreach ($autos as $auto )
+                    <option value="{{$auto->placa}}">{{$auto->modelo}} {{$auto->placa}}</option>
+                @endforeach
+            </select>
+            <label>Fecha de reserva</label><br>
+            <input type="date" name="entrada" class="form-control ">
+            <label>Hora de entrada</label><br>
+            <select name="horaE" class="form-select">
+                <option value="06:00">06:00</option>
+                <option value="07:00">07:00</option>
+                <option value="08:00">08:00</option>
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+                <option value="18:00">18:00</option>
+                <option value="19:00">19:00</option>
+                <option value="20:00">20:00</option>
+                <option value="21:00">21:00</option>
+            </select>
+            <label>Hora de salida</label><br>
+            <select name="horaS" class="form-select">
+                <option value="07:00">07:00</option>
+                <option value="08:00">08:00</option>
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+                <option value="18:00">18:00</option>
+                <option value="19:00">19:00</option>
+                <option value="20:00">20:00</option>
+                <option value="21:00">21:00</option>
+                <option value="22:00">22:00</option>
+            </select>
+            <div class="row">
+                <div class="col">
+                    <a href="{{route('menu')}}" id="cancelar" class="btn">Cancelar</a>
+                </div>
+                <div class="col">
+                    <input type="submit" value="Registrar" class="btn" id="acceder">
+                </div>
             </div>
-            <div class="col">
-                <input type="submit" value="Registrar" class="btn" id="acceder">
-            </div>
-        </div>
+        </form>
      </div>
    </div>
 </body>

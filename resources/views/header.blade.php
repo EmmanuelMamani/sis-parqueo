@@ -17,7 +17,7 @@
 <body>
     <div class="row" id="navbar">
         <div class="col-8">Sis-parqueo</div>
-        <a href="#" class="col-2" id="inicio">inicio</a>
+        <a href="{{route('menu')}}" class="col-2" id="inicio">inicio</a>
         <a href="{{route('logout')}}" class="col-2">logout</a>
     </div>
     <div>
