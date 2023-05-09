@@ -18,9 +18,10 @@ class CreateVehiculosTable extends Migration
             $table->string('marca');
             $table->string('modelo');
             $table->string('año',5);
-            $table->string('placa',8);
+            $table->string('placa',8)->unique();
             $table->string('tipo_vehiculo');
             $table->string('soat');
+            $table->integer('perfil_id');
             $table->timestamps();
         });
     }

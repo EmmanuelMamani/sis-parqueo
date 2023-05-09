@@ -15,7 +15,7 @@ class CreateParqueosTable extends Migration
     {
         Schema::create('parqueos', function (Blueprint $table) {
             $table->id();
-            $table->integer('nro_parqueo');
+            $table->integer('nro_parqueo')->unique();
             $table->double('dimesionH',8,2);
             $table->double('dimesionV',8,2);
             $table->string('tipo_vehiculo');
