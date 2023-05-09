@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\rol;
+use App\Models\vehiculo;
+
 class userController extends Controller
 {
     //
@@ -54,6 +56,16 @@ class userController extends Controller
         $perfil->licencia=$request->licencia;
         $perfil->ocupacion=$request->ocupacion;
         $perfil->save();
+
+        $vehiculo=new vehiculo();
+        $vehiculo->marca=$request->marca;
+        $vehiculo->modelo=$request->modelo;
+        $vehiculo->año=$request->año;
+        $vehiculo->placa=$request->placa;
+        $vehiculo->tipo_vehiculo=$request->tipo_vehiculo;
+        $vehiculo->soat=$request->soat;
+        $vehiculo->perfil_id=$perfil->id;
+
 
         return redirect('/menu');
     }

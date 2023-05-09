@@ -16,7 +16,6 @@ class CreatePagosTable extends Migration
         Schema::create('pagos', function (Blueprint $table) {
             $table->id();
             $table->string('motivo_pago');
-            $table->string('user_ci',10);
             $table->string('comprobante');
             $table->integer('perfil_id');
             $table->timestamps();

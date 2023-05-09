@@ -60,7 +60,7 @@
             <span class="error text-danger">{{$message}}</span><br>
         @enderror
             <label>Tipo de vehiculo:</label><br>
-            <select name="rol" class="form-select">
+            <select name="tipo_vehiculo" class="form-select">
                 <option value="1">Tipo de vehiculo</option>
             </select>
             <input type="text" name="soat" placeholder="Soat" class="form-control input">
