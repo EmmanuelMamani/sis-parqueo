@@ -40,4 +40,11 @@ class User extends Authenticatable
     public function rol(){
         return $this->belongsTo(rol::class);
     }
+
+    public function asignaciones(){
+        return $this->hasMany(asignacion_horario::class,'user_ci');
+    }
+    public function roles(){
+        return $this->belongsToMany(rol::class,user_rol::class);
+    }
 }
