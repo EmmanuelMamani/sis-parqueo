@@ -11,7 +11,7 @@ class userController extends Controller
         $credentials=request()->only('email','password');
         if(Auth::attempt($credentials)){
             request()->session()->regenerate();
-                return redirect()->intended('/menu');
+                return redirect('/menu');
         }else{
             return "incorrecto";
         }
@@ -22,5 +22,21 @@ class userController extends Controller
         request()->session()->invalidate();
         request()->session()->regenerateToken();
         return redirect('/');
+    }
+    public function ver_completar_perfil(){
+
+    }
+    public function ver_asignar_rol(){
+
+    }
+    public function registrar(){
+
+    }
+
+    public function completar_perfil(){
+
+    }
+    public function asignar_rol(){
+
     }
 }

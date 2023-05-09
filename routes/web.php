@@ -13,6 +13,8 @@ use App\Http\Controllers\userController;
 |
 */
 Route::get('/menu', function () {return view('menu');})->name('menu');
+
+/********************************Usuario****************************************** */
 Route::get('/registro_usuario', function () {return view('registro_usuario');})->name('registro_usuario');
 Route::get('/completar_perfil', function () {return view('completar_perfil');})->name('completar_perfil');
 Route::get('/asignar_rol', function () {return view('asignacion_rol');})->name('asignar_rol');
