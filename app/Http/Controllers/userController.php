@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 class userController extends Controller
 {
     //
+    public function menu(){
+        return view('menu');
+    }
     public function autentificacion(Request $request){
         $credentials=request()->only('email','password');
         if(Auth::attempt($credentials)){
@@ -23,11 +26,14 @@ class userController extends Controller
         request()->session()->regenerateToken();
         return redirect('/');
     }
+    public function ver_registrar_usuario(){
+        return view('registro_usuario');
+    }
     public function ver_completar_perfil(){
-
+        return view('completar_perfil');
     }
     public function ver_asignar_rol(){
-
+        return view('asignacion_rol');
     }
     public function registrar(){
 
