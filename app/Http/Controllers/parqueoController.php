@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
+use App\Models\parqueo;
 class parqueoController extends Controller
 {
     //
@@ -31,8 +31,15 @@ class parqueoController extends Controller
     public function ver_registrar_parqueo(){
         return view('registro_parqueo');
     }
-    public function registrar_parqueo(){
-
+    public function registrar_parqueo(Request $request){
+        $parqueo=new parqueo();
+        $parqueo->nro_parqueo=$request->parqueo;
+        $parqueo->dimesionH=$request->horizontal;
+        $parqueo->dimesionV=$request->vertical;
+        $parqueo->tipo_vehiculo=$request->tipo;
+        $parqueo->precio=$request->precio;
+        $parqueo->save();
+        return redirect('/menu');
     }
     public function pagos_pendientes(){
         return view('pagos_pendientes');

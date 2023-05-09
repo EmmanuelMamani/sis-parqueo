@@ -19,7 +19,7 @@
         <div id="negro">
             <form action="" id="formulario">
                 <label for="">Nro. Parqueo</label><br>
-                <input type="number" class="form-control">
+                <input type="number" class="form-control" name="parqueo">
                 <label>Dimensiones en m</label>br
                 <div class="row">
                     <div class="col">Horizontal</div>
@@ -27,11 +27,11 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <input type="number" class="form-control">
+                        <input type="number" class="form-control" name="horizontal">
                     </div>
                     <div class="col">
-                        <select name="dia" class="form-select">
-                            <option value="camioneta">Coche</option>
+                        <select name="tipo" class="form-select">
+                            <option value="coche">Coche</option>
                             <option value="camioneta">Camioneta</option>
                         </select>
                     </div>
@@ -39,13 +39,13 @@
                 <div class="row">
                     <div class="col-6 col">
                         <label for="">Vertical</label><br>
-                        <input type="number" class="form-control">
+                        <input type="number" class="form-control" name="vertical">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6 col">
                         <label for="">Precio asignado</label><br>
-                        <input type="number" class="form-control">
+                        <input type="number" class="form-control" name="precio">
                     </div>
                 </div>
                 <div class="row">
