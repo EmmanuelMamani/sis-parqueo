@@ -15,18 +15,20 @@
 </head>
 <body>
     <div id="formulario">
-        <form action="" method="post" >
+        <form action="{{route('responder_solicitud',['id'=>$id])}}" method="post" >
             @csrf
-            <h3>Cambiar plaza</h3>
+            <h3>Cambiar solicitudes</h3>
             <h4>Nombre del solicitante</h4>
-            <h5>Andrea Guarachi</h5>
+            <h5> {{$reserva->vehiculo->perfil->usuario->name}} {{$reserva->vehiculo->perfil->usuario->last_name}}</h5>
             <h4>Correo Electronico</h4>
-            <h5>andreagua@gmail.com</h5>
+            <h5>{{$reserva->vehiculo->perfil->usuario->email}}</h5>
             <h4>Telefono</h4>
-            <h5>74123654</h5>
+            <h5>{{$reserva->vehiculo->perfil->telefono}}</h5>
             <label>Asignar espacio:</label><br>
             <select name="parqueo" class="form-select">
-                <option value="1">1</option>
+                @foreach ($parqueos as $parqueo )
+                    <option value="{{$parqueo->nro_parqueo}}">{{$parqueo->nro_parqueo}}</option>
+                @endforeach
             </select>
             <div class="row">
                 <div class="col">

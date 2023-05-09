@@ -4,6 +4,8 @@
 @endsection
 @section('contenido')
     <div id="opciones">
-        <a href="{{route('confirmacion_cambio_plaza')}}" class="btn opcion">2023-05-07   Docente</a>
+        @foreach ($reservas as $reserva)
+        <a href="{{route('confirmacion_cambio_plaza',['id'=>$reserva->id])}}" class="btn opcion">{{$reserva->fecha_entrada}} {{$reserva->vehiculo->perfil->usuario->name}} {{$reserva->vehiculo->perfil->usuario->last_name}}</a>
+        @endforeach
     </div>
 @endsection

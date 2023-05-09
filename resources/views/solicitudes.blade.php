@@ -5,7 +5,7 @@
 @section('contenido')
     <div id="opciones">
         @foreach ($reservas as $reserva)
-        <a href="{{route('responder_solicitud')}}" class="btn opcion">{{$reserva->fecha_entrada}} {{$reserva->vehiculo->perfil->usuario->name}} {{$reserva->vehiculo->perfil->usuario->last_name}}</a>
+        <a href="{{route('responder_solicitud',['id'=>$reserva->id])}}" class="btn opcion">{{$reserva->fecha_entrada}} {{$reserva->vehiculo->perfil->usuario->name}} {{$reserva->vehiculo->perfil->usuario->last_name}}</a>
         @endforeach
     </div>
 @endsection

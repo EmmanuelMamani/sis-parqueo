@@ -27,18 +27,29 @@ class parqueoController extends Controller
             $solicutud->save();
             return redirect('/menu');
     }
-    public function ver_responder_solicitud(){
-
-        return view('responder_solicitud');
+    public function ver_responder_solicitud($id){
+        $reserva=reserva::find($id);
+        $parqueos=parqueo::all();
+        return view('responder_solicitud',['reserva'=>$reserva,'parqueos'=>$parqueos,'id'=>$id]);
     }
-    public function responder_solicitud(){
-        
+    public function responder_solicitud($id,Request $request){
+        $reserva=reserva::find($id);
+        $reserva->nro_plaza=$request->parqueo;
+        $reserva->atendido=true;
+        $reserva->save();
+
+        return redirect('/menu');
     }
     public function ver_cambiar_parqueo(){
-        return view('cambiar_plaza');
+        $reservas=reserva::all()->where('atendido',true);
+        return view('cambiar_plaza',['reservas'=>$reservas]);
     }
-    public function confirmacion_cambio_plaza(){
-        return view('confirmacion_cambio_plaza');
+    public function confirmacion_cambio_plaza($id){
+        
+        $reserva=reserva::find($id);
+        $parqueos=parqueo::all();
+        return view('confirmacion_cambio_plaza',['reserva'=>$reserva,'parqueos'=>$parqueos,'id'=>$id]);
+        
     }
     public function cambiar_parqueo(){
         
