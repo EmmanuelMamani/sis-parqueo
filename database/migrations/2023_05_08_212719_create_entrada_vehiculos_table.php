@@ -15,7 +15,7 @@ class CreateEntradaVehiculosTable extends Migration
     {
         Schema::create('entrada_vehiculos', function (Blueprint $table) {
             $table->id();
-            $table->string('vehiculo_placa');
+            $table->string('vehiculo_placa')->unique();
             $table->date('fecha_entrada');
             $table->time('hora_entrada');
             $table->time('hora_salida');

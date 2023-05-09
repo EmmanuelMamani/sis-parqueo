@@ -37,14 +37,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function rol(){
-        return $this->belongsTo(rol::class);
-    }
 
     public function asignaciones(){
-        return $this->hasMany(asignacion_horario::class,'user_ci');
+        return $this->hasMany(asignacion_horario::class,'user_ci','ci');
     }
     public function roles(){
         return $this->belongsToMany(rol::class,user_rol::class);
+    }
+
+    public function perfil(){
+        return $this->hasOne(perfil::class,'user_ci','ci');
     }
 }
