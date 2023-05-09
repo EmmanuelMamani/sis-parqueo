@@ -37,7 +37,10 @@ Route::get('/cambiar_plaza', [parqueoController::class,'ver_cambiar_parqueo'])->
 Route::get('/confirmacion_cambio_plaza', [parqueoController::class,'confirmacion_cambio_plaza'])->name('confirmacion_cambio_plaza');
 Route::get('/registro_parqueo', [parqueoController::class,'ver_registrar_parqueo'])->name('registro_parqueo');
 Route::get('/pagos_pendientes', [parqueoController::class,'pagos_pendientes'])->name('pagos_pendientes');
+
+
 Route::get('/pagar_parqueo', [parqueoController::class,'ver_registro_pago'])->name('pagar_parqueo');
+Route::post('/pagar_parqueo', [parqueoController::class,'registro_pago'])->name('pagar_parqueo');
 /**********************************login*********************************/
 Route::post('/',[userController::class,'autentificacion'])->name('login');
 Route::get('/logout',[userController::class,'logout'])->name('logout');

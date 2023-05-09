@@ -26,7 +26,7 @@ class pagarRequest extends FormRequest
         return [
             'name'=>'bail|required|regex:/^[a-zA-Z\s áéíóúÁÉÍÓÚñÑ]+$/u|min:5|max:50',
             'motivo'=>'bail|required|regex:/^[a-zA-Z\s áéíóúÁÉÍÓÚñÑ]+$/u|min:5|max:80',
-            'ci'=>'bail|required|integer|digits_between:5,9'
+            'ci'=>'bail|required|integer|digits_between:5,9|exists:perfils,user_ci'
         ];
     }
 }

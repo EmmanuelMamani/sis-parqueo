@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\pagarRequest;
 use App\Http\Requests\parqueoRequest;
+use App\Models\pagos;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\parqueo;
+use App\Models\perfil;
+
 class parqueoController extends Controller
 {
     //
@@ -49,8 +53,15 @@ class parqueoController extends Controller
     public function ver_registro_pago(){
         return view('pagar_parqueo');
     }
-    public function registro_pago(){
-        
+    public function registro_pago(pagarRequest $request){
+        $pago=new pagos();
+        $pago->motivo=$request->motivo;
+        $perfil=perfil::where('user_ci',$request->ci)->get();
+        $pago->perfil_id=$perfil->id;
+        $pago->comprobante="enlacedelaimagendelcomprobante";
+        $pago->save();
+
+        return redirect('/menu');
     }
     public function ver_solicitudes(){
         return view('solicitudes');
