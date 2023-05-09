@@ -6,16 +6,27 @@ use App\Http\Requests\parqueoRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\parqueo;
+use App\Models\perfil;
+use App\Models\vehiculo;
+use App\Models\reserva;
 class parqueoController extends Controller
 {
     //
     public function ver_solicitar_parqueo(){
-        return view('solicitud_parqueo');
+        $autos=Auth::user()->perfil->vehiculos;
+        return view('solicitud_parqueo',['autos'=>$autos]);
     }
-    public function solicitar_parqueo(){
-
+    public function solicitar_parqueo(Request $request){
+            $solicutud= new reserva();
+            $solicutud->vehiculo_placa=$request->vehiculo;
+            $solicutud->fecha_entrada=$request->entrada;
+            $solicutud->hora_entrada=$request->horaE;
+            $solicutud->hora_salida=$request->horaS;
+            $solicutud->save();
+            return redirect('/menu');
     }
     public function ver_responder_solicitud(){
+
         return view('responder_solicitud');
     }
     public function responder_solicitud(){
@@ -53,6 +64,7 @@ class parqueoController extends Controller
         
     }
     public function ver_solicitudes(){
-        return view('solicitudes');
+        $reservas=reserva::all()->where('atendido',false);
+        return view('solicitudes',['reservas'=>$reservas]);
     }
 }

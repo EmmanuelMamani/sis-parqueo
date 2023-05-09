@@ -25,13 +25,12 @@ Route::get('/asignar_horario',[guardiaController::class,'ver_asignar_horario'])-
 Route::post('/asignar_horario',[guardiaController::class,'asignar_horario'])->name('asignar_horario');
 Route::get('/registro_entrada_vehiculo',[guardiaController::class,'ver_registro_vehiculo'])->name('registro_entrada_vehiculo');
 Route::post('/registro_entrada_vehiculo',[guardiaController::class,'registro_vehiculo'])->name('registro_entrada_vehiculo');
-
 Route::get('/completar_perfil', [userController::class,'ver_completar_perfil'])->name('completar_perfil');
 Route::post('/completar_perfil',[userController::class,'completar_perfil'])->name('perfil_completo');
-
-
 Route::get('/solicitud_parqueo',[parqueoController::class,'ver_solicitar_parqueo'])->name('solicitud_parqueo');
+Route::post('/solicitud_parqueo',[parqueoController::class,'solicitar_parqueo'])->name('solicitud_parqueo');
 Route::get('/solicitudes', [parqueoController::class,'ver_solicitudes'])->name('solicitudes');
+
 Route::get('/responder_solicitud',[parqueoController::class,'ver_responder_solicitud'])->name('responder_solicitud');
 Route::get('/cambiar_plaza', [parqueoController::class,'ver_cambiar_parqueo'])->name('cambiar_plaza');
 Route::get('/confirmacion_cambio_plaza', [parqueoController::class,'confirmacion_cambio_plaza'])->name('confirmacion_cambio_plaza');
