@@ -20,7 +20,7 @@
             <form action="" id="formulario">
                 <label for="">Nro. Parqueo</label><br>
                 <input type="number" class="form-control">
-                <label>Dimenciones en m</label>br
+                <label>Dimensiones en m</label>br
                 <div class="row">
                     <div class="col">Horizontal</div>
                     <div class="col">Tipo de vehiculo</div>
