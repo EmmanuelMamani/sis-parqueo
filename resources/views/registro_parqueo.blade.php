@@ -19,7 +19,9 @@
         <div id="negro">
             <form action="" id="formulario">
                 <label for="">Nro. Parqueo</label><br>
-                <input type="number" class="form-control" name="parqueo">
+                <input type="number" class="form-control" name="parqueo" {{old('parqueo')}}>
+
+
                 <label>Dimensiones en m</label>br
                 <div class="row">
                     <div class="col">Horizontal</div>
@@ -27,7 +29,10 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <input type="number" class="form-control" name="horizontal">
+                        <input type="number" class="form-control" name="horizontal" {{old('horizontal')}}>
+                        @error('horizontal')
+                            <span class="error text-danger">{{$message}}</span><br>
+                        @enderror
                     </div>
                     <div class="col">
                         <select name="tipo" class="form-select">
@@ -39,13 +44,19 @@
                 <div class="row">
                     <div class="col-6 col">
                         <label for="">Vertical</label><br>
-                        <input type="number" class="form-control" name="vertical">
+                        <input type="number" class="form-control" name="vertical" value="{{old('vertical')}}">
+                        @error('vertical')
+                        <span class="error text-danger">{{$message}}</span><br>
+                        @enderror
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6 col">
                         <label for="">Precio asignado</label><br>
-                        <input type="number" class="form-control" name="precio">
+                        <input type="number" class="form-control" name="precio"  value="{{old('precio')}}">
+                        @error('precio')
+                        <span class="error text-danger">{{$message}}</span><br>
+                        @enderror
                     </div>
                 </div>
                 <div class="row">

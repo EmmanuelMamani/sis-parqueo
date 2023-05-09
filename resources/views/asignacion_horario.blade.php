@@ -22,7 +22,7 @@
                 @csrf
                 <label for="">Carnet de identidad</label>
                 <div class="row">
-                    <div class="col col-8"><input type="text" class="form-control"  name="ci" id="usuario"></div>
+                    <div class="col col-8"><input type="text" class="form-control"  name="ci" id="usuario" value="{{old('ci')}}"></div>
                     <div class="col"><span class="btn" id="buscar">Buscar</span></div>
                 </div>
                 <label for="">Tipo de usuario detectado</label><br>

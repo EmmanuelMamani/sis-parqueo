@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\parqueoRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\parqueo;
@@ -31,7 +33,7 @@ class parqueoController extends Controller
     public function ver_registrar_parqueo(){
         return view('registro_parqueo');
     }
-    public function registrar_parqueo(Request $request){
+    public function registrar_parqueo(parqueoRequest $request){
         $parqueo=new parqueo();
         $parqueo->nro_parqueo=$request->parqueo;
         $parqueo->dimesionH=$request->horizontal;

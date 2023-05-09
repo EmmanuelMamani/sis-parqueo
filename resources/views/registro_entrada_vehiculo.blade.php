@@ -19,13 +19,25 @@
             @csrf
             <h3>Registro de entrada vehicular</h3>
             <label>Placa:</label><br>
-            <input type="text" name="placa" placeholder="Placa del vehiculo" class="form-control input">
+            <input type="text" name="placa" placeholder="Placa del vehiculo" class="form-control input" {{old('placa')}}>
+            @error('placa')
+            <span class="error text-danger">{{$message}}</span><br>
+            @enderror
             <label>Fecha de entrada</label><br>
-            <input type="date" name="entrada" class="form-control input">
+            <input type="date" name="entrada" class="form-control input" {{old('entrada')}}>
+            @error('entrada')
+            <span class="error text-danger">{{$message}}</span><br>
+            @enderror
             <label>Hora entrada:</label><br>
-            <input type="time" name="entradaH" class="form-control input">
+            <input type="time" name="entradaH" class="form-control input" {{old('entradaH')}}>
+            @error('entradaH')
+            <span class="error text-danger">{{$message}}</span><br>
+            @enderror
             <label>Hora salida:</label><br>
-            <input type="time" name="salidaH" class="form-control input">
+            <input type="time" name="salidaH" class="form-control input" {{old('salidaH')}}>
+            @error('salidaH')
+            <span class="error text-danger">{{$message}}</span><br>
+            @enderror
             <label>Nro. plaza ocupada:</label><br>
             <select name="plaza" class="form-select">
                 @foreach ($parqueos as $parqueo )

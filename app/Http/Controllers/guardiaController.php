@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\asignarRequest;
+use App\Http\Requests\entradaVehiculoRequest;
 use Illuminate\Http\Request;
 use App\Models\asignacion_horario;
 use App\Models\User;
@@ -14,7 +16,7 @@ class guardiaController extends Controller
         $usuarios=user::all();
         return view('asignacion_horario', ['usuarios'=>$usuarios]);
     }
-    public function asignar_horario(Request $request){
+    public function asignar_horario(asignarRequest $request){
         $horario= new asignacion_horario();
         $horario->user_ci= $request->ci;
         $horario->dia=$request->dia;
@@ -26,7 +28,7 @@ class guardiaController extends Controller
         $parqueos=parqueo::all();
         return view('registro_entrada_vehiculo',['parqueos'=>$parqueos]);
     }
-    public function registro_vehiculo(Request $request){
+    public function registro_vehiculo(entradaVehiculoRequest $request){
         $entrada_vehiculo= new entrada_vehiculo();
         $entrada_vehiculo->vehiculo_placa=$request->placa;
         $entrada_vehiculo->fecha_entrada=$request->entrada;

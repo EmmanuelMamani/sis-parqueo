@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class parqueoRequest extends FormRequest
+class asignarRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class parqueoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,10 +24,7 @@ class parqueoRequest extends FormRequest
     public function rules()
     {
         return [
-            'parquero'=>'bail|required|integer|unique:parqueo',
-            'horizontal'=>'bail|required|integer',
-            'vertical'=>'bail|required|integer',
-            'precio'=>'bail|required|numeric',
+            'ci'=>'bail|required|min:6|max:9'
         ];
     }
 }

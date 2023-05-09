@@ -13,7 +13,7 @@ class entradaVehiculoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class entradaVehiculoRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'placa'=>'bail|required|string|min:3|max:10',
+            'entrada'=>'bail|required' ,
+            'entradaH'=>'bail|required',
+            'salidaH'=>'bail|required',
         ];
     }
 }
