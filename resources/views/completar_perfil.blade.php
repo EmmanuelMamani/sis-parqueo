@@ -15,20 +15,50 @@
 </head>
 <body>
     <div id="formulario">
-        <form action="" method="post" >
+        <form action="{{route('perfil_completo')}}" method="post" >
             @csrf
             <h3>Completar perfil</h3>
-            <input type="text" name="telefono" placeholder="Telefono" class="form-control input">
-            <input type="text" name="descripcion" placeholder="Descripcion de la cuenta" class="form-control input">
-            <input type="text" name="direccion" placeholder="Direccion de recidencia" class="form-control input">
-            <input type="date" name="nacimiento" placeholder="Fecha de nacimiento" class="form-control input">
-            <input type="text" name="licensia" placeholder="Licensia de conducir" class="form-control input">
-            <input type="text" name="ocupacion" placeholder="Ocupacion/Cargo" class="form-control input">
+            <input type="text" name="telefono" placeholder="Telefono" class="form-control input" value="{{old('telefono')}}">
+           @error('telefono')
+               <span class="error text-danger">{{$message}}</span><br>
+           @enderror
+            <input type="text" name="descripcion" placeholder="Descripcion de la cuenta" class="form-control input" value="{{old('descripcion')}}">
+            @error('descripcion')
+            <span class="error text-danger">{{$message}}</span><br>
+        @enderror
+            <input type="text" name="direccion" placeholder="Direccion de residencia" class="form-control input" value="{{old('direccion')}}">
+            @error('direccion')
+            <span class="error text-danger">{{$message}}</span><br>
+        @enderror
+            <input type="date" name="nacimiento" placeholder="Fecha de nacimiento" class="form-control input" value="{{old('nacimiento')}}">
+            @error('nacimiento')
+            <span class="error text-danger">{{$message}}</span><br>
+        @enderror
+            <input type="text" name="licencia" placeholder="Licencia de conducir" class="form-control input" value="{{old('licencia')}}">
+            @error('licencia')
+            <span class="error text-danger">{{$message}}</span><br>
+        @enderror
+            <input type="text" name="ocupacion" placeholder="Ocupacion/Cargo" class="form-control input" value="{{old('ocupacion')}}">
+            @error('ocupacion')
+            <span class="error text-danger">{{$message}}</span><br>
+        @enderror
             <label>Vehiculo:</label><br>
-            <input type="text" name="marca" placeholder="Marca" class="form-control input">
-            <input type="text" name="modelo" placeholder="Modelo" class="form-control input">
-            <input type="text" name="año" placeholder="Año" class="form-control input">
-            <input type="text" name="placa" placeholder="Placa" class="form-control input">
+            <input type="text" name="marca" placeholder="Marca" class="form-control input" value="{{old('marca')}}">
+            @error('marca')
+            <span class="error text-danger">{{$message}}</span><br>
+        @enderror
+            <input type="text" name="modelo" placeholder="Modelo" class="form-control input" value="{{old('modelo')}}">
+            @error('modelo')
+            <span class="error text-danger">{{$message}}</span><br>
+        @enderror
+            <input type="text" name="año" placeholder="Año" class="form-control input" value="{{old('año')}}">
+            @error('año')
+            <span class="error text-danger">{{$message}}</span><br>
+        @enderror
+            <input type="text" name="placa" placeholder="Placa" class="form-control input" value="{{old('placa')}}">
+            @error('placa')
+            <span class="error text-danger">{{$message}}</span><br>
+        @enderror
             <label>Tipo de vehiculo:</label><br>
             <select name="rol" class="form-select">
                 <option value="1">Tipo de vehiculo</option>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\completarPerfil;
 use App\Http\Requests\userRequest;
+use App\Models\perfil;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,8 +44,18 @@ class userController extends Controller
         $roles=rol::all();
         return view('asignacion_rol',['usuarios'=>$usuarios,'roles'=>$roles]);
     }
-    public function completar_perfil(){
+    public function completar_perfil(completarPerfil $request){
+        $perfil=new perfil();
+        $perfil->user_ci=Auth::user()->ci;
+        $perfil->telefono=$request->telefono;
+        $perfil->descripcion=$request->descripcion;
+        $perfil->direccion=$request->direccion;
+        $perfil->fecha_nac=$request->nacimiento;
+        $perfil->licencia=$request->licencia;
+        $perfil->ocupacion=$request->ocupacion;
+        $perfil->save();
 
+        return redirect('/menu');
     }
     public function asignar_rol(Request $request){
         

@@ -25,6 +25,7 @@ Route::get('/asignar_horario',[guardiaController::class,'ver_asignar_horario'])-
 Route::post('/asignar_horario',[guardiaController::class,'asignar_horario'])->name('asignar_horario');
 
 Route::get('/completar_perfil', [userController::class,'ver_completar_perfil'])->name('completar_perfil');
+Route::post('/completar_perfil',[userController::class,'completar_perfil'])->name('perfil_completo');
 
 Route::get('/solicitud_parqueo',[parqueoController::class,'ver_solicitar_parqueo'])->name('solicitud_parqueo');
 Route::get('/registro_entrada_vehiculo',[guardiaController::class,'ver_registro_vehiculo'])->name('registro_entrada_vehiculo');
