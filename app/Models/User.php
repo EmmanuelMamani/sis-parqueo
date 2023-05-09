@@ -48,4 +48,7 @@ class User extends Authenticatable
     public function perfil(){
         return $this->hasOne(perfil::class,'user_ci','ci');
     }
+    public function rol(){
+        return $this->belongsTo(rol::class);
+    }
 }

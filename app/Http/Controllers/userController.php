@@ -14,7 +14,7 @@ class userController extends Controller
 {
     //
     public function menu(){
-        return view('menu');
+         return view('menu');
     }
     public function autentificacion(Request $request){
         $credentials=request()->only('email','password');

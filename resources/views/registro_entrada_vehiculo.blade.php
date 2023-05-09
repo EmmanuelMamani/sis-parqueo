@@ -15,7 +15,7 @@
 </head>
 <body>
     <div id="formulario">
-        <form action="" method="post" >
+        <form action="{{route('registro_entrada_vehiculo')}}" method="post" >
             @csrf
             <h3>Registro de entrada vehicular</h3>
             <label>Placa:</label><br>
@@ -27,7 +27,11 @@
             <label>Hora salida:</label><br>
             <input type="time" name="salidaH" class="form-control input">
             <label>Nro. plaza ocupada:</label><br>
-            <input type="number" name="plaza" class="form-control input">
+            <select name="plaza" class="form-select">
+                @foreach ($parqueos as $parqueo )
+                <option value="{{$parqueo->id}}">{{$parqueo->nro_parqueo}}</option>
+                @endforeach
+            </select>
             <div class="row">
                 <div class="col">
                     <a href="{{route('menu')}}" id="cancelar" class="btn">Cancelar</a>
