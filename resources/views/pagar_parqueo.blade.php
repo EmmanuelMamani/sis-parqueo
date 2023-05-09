@@ -15,7 +15,7 @@
 </head>
 <body>
     <div id="formulario">
-        <form action="" method="post" >
+        <form action="{{route('pagar_parqueo')}}" method="post" >
             @csrf
            <h3>Pagos a travez de codigo QR</h3>
            <div class="row">
