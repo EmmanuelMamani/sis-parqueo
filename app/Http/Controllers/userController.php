@@ -11,12 +11,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\rol;
 use App\Models\vehiculo;
-
-class userController extends Controller
-{
+class userController extends Controller{
     //
     public function menu(){
-         return view('menu');
+        $rol=Auth::user()->rol->name;
+        $perfil=Auth::user()->perfil;
+        if($rol=='cliente' && $perfil == NULL){
+            return view('completar_perfil');
+        }
+      return view('menu');
     }
     public function autentificacion(Request $request){
         $credentials=request()->only('email','password');
@@ -54,18 +57,18 @@ class userController extends Controller
         $perfil->direccion=$request->direccion;
         $perfil->fecha_nac=$request->nacimiento;
         $perfil->licencia=$request->licencia;
-        $perfil->ocupacion=$request->ocupacion;
+        $perfil->ocupación=$request->ocupacion;
         $perfil->save();
 
-        $vehiculo=new vehiculo();
-        $vehiculo->marca=$request->marca;
-        $vehiculo->modelo=$request->modelo;
-        $vehiculo->año=$request->año;
-        $vehiculo->placa=$request->placa;
-        $vehiculo->tipo_vehiculo=$request->tipo_vehiculo;
-        $vehiculo->soat=$request->soat;
-        $vehiculo->perfil_id=$perfil->id;
-
+        $vehuculo=new vehiculo;
+        $vehuculo->marca=$request->marca;
+        $vehuculo->año=$request->año;
+        $vehuculo->modelo=$request->modelo;
+        $vehuculo->placa=$request->placa;
+        $vehuculo->tipo_vehiculo=$request->tipo;
+        $vehuculo->soat=$request->soat;
+        $vehuculo->perfil_id=$perfil->id;
+        $vehuculo->save();
 
         return redirect('/menu');
     }

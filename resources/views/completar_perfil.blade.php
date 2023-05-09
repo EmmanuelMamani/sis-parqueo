@@ -60,13 +60,16 @@
             <span class="error text-danger">{{$message}}</span><br>
         @enderror
             <label>Tipo de vehiculo:</label><br>
-            <select name="tipo_vehiculo" class="form-select">
-                <option value="1">Tipo de vehiculo</option>
+
+            <select name="tipo" class="form-select">
+                <option value="coche">Coche</option>
+                <option value="camioneta">Camioneta</option>
+                
             </select>
             <input type="text" name="soat" placeholder="Soat" class="form-control input">
             <div class="row">
                 <div class="col">
-                    <a href="{{route('menu')}}" id="cancelar" class="btn">Cancelar</a>
+                    <a href="{{route('login')}}" id="cancelar" class="btn">Cancelar</a>
                 </div>
                 <div class="col">
                     <input type="submit" value="Completar" class="btn" id="acceder">

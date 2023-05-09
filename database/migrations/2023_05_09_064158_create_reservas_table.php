@@ -21,6 +21,7 @@ class CreateReservasTable extends Migration
             $table->time('hora_salida');
             $table->integer('nro_plaza')->nullable();
             $table->boolean('atendido')->default(false);
+            $table->boolean('pagado')->default(false);
             $table->timestamps();
         });
     }
