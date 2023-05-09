@@ -13,7 +13,7 @@ class parqueoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class parqueoRequest extends FormRequest
     public function rules()
     {
         return [
-            'parquero'=>'bail|required|integer|unique:parqueo',
+            'parqueo'=>'bail|required|integer|unique:parqueos,nro_parqueo',
             'horizontal'=>'bail|required|integer',
             'vertical'=>'bail|required|integer',
             'precio'=>'bail|required|numeric',

@@ -17,10 +17,13 @@
     <div id="azul">
         <h3>Registrar lugar de parqueo</h3>
         <div id="negro">
-            <form action="" id="formulario">
+            <form action="{{route('registro_parqueos')}}" id="formulario" method="post">
+                @csrf
                 <label for="">Nro. Parqueo</label><br>
-                <input type="number" class="form-control" name="parqueo" {{old('parqueo')}}>
-
+                <input type="number" class="form-control" name="parqueo" value="{{old('parqueo')}}">
+                @error('parqueo')
+                            <span class="error text-danger">{{$message}}</span><br>
+                        @enderror
 
                 <label>Dimensiones en m</label>br
                 <div class="row">
@@ -29,7 +32,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <input type="number" class="form-control" name="horizontal" {{old('horizontal')}}>
+                        <input type="number" class="form-control" name="horizontal" value="{{old('horizontal')}}">
                         @error('horizontal')
                             <span class="error text-danger">{{$message}}</span><br>
                         @enderror
