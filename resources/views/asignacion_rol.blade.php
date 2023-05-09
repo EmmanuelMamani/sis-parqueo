@@ -15,17 +15,21 @@
 </head>
 <body>
     <div id="formulario">
-        <form action="" method="post" >
+        <form action="{{route('asignar_rol')}}" method="post" >
             @csrf
             <h3>Asignnar rol a usuario</h3>
 
             <label>Usuario:</label><br>
-            <select name="Usuario" class="form-select">
-                <option value="1">Emma</option>
+            <select name="usuario" class="form-select">
+                @foreach ($usuarios as $usuario )
+                <option value="{{$usuario->id}}">{{$usuario->name}}  {{$usuario->last_name}}</option>
+                @endforeach
             </select>
             <label>Rol:</label><br>
             <select name="rol" class="form-select">
-                <option value="1">Administrador</option>
+                @foreach ($roles as $rol )
+                <option value="{{$rol->id}}">{{$rol->name}}</option>
+                @endforeach
             </select>
             <div class="row">
                 <div class="col">

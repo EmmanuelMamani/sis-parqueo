@@ -18,14 +18,15 @@
         <h3>Asignacion de horario de atencion</h3>
         <div id="negro">
             <h3>Bienvenido-------------</h3>
-            <form action="" id="formulario">
+            <form action="{{route('asignar_horario')}}" id="formulario" method="POST">
+                @csrf
                 <label for="">Carnet de identidad</label>
                 <div class="row">
-                    <div class="col col-8"><input type="text" class="form-control"></div>
+                    <div class="col col-8"><input type="text" class="form-control"  name="ci" id="usuario"></div>
                     <div class="col"><span class="btn" id="buscar">Buscar</span></div>
                 </div>
                 <label for="">Tipo de usuario detectado</label><br>
-                <input type="text" disabled class="form-control">
+                <input type="text" disabled class="form-control" id="tipo">
                 <div class="row">
                     <div class="col">Elige un turno</div>
                     <div class="col">Elige dia de atencion</div>
@@ -33,14 +34,18 @@
                 <div class="row">
                     <div class="col">
                         <select name="turno" class="form-select">
-                            <option value="06:00-13:30">06:00-13:00</option>
-                            <option value="13:30-22:00">13:30-22:00</option>
+                            <option value="mañana">06:00-13:00</option>
+                            <option value="tarde">13:30-22:00</option>
                         </select>
                     </div>
                     <div class="col">
                         <select name="dia" class="form-select">
                             <option value="lunes">Lunes</option>
                             <option value="martes">Martes</option>
+                            <option value="miercoles">miercoles</option>
+                            <option value="jueves">Jueves</option>
+                            <option value="viernes">Viernes</option>
+                            <option value="sabado">Sabado</option>
                         </select>
                     </div>
                 </div>
@@ -55,5 +60,18 @@
             </form>
         </div>
     </div>
+<script>
+    var buscar=document.getElementById("buscar");
+    var tipo=document.getElementById("tipo");
+    buscar.onclick=function(){
+        var usuario=document.getElementById("usuario");
+        tipo.value="usuario no encontrado"
+        @foreach ($usuarios as $usuario)
+            if(usuario.value=='{{$usuario->ci}}'){
+                tipo.value='{{$usuario->rol->name}}'
+            }
+        @endforeach
+    }
+</script>
 </body>
 </html>

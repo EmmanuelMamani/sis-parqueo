@@ -15,23 +15,40 @@
 </head>
 <body>
     <div id="formulario">
-        <form action="" method="post" >
+        <form action="{{route('registro_usuario')}}" method="post" >
             @csrf
             <h3>Crear cuenta</h3>
             <div class="row">
                 <div class="col col-6">
-                    <input type="text" name="name" placeholder="Nombres" class="form-control input">
+                    <input type="text" name="name" placeholder="Nombres" class="form-control input" value="{{old('name')}}">
+                    @if ($errors->has('name'))
+                    <span class="error text-danger" for="name">{{ $errors->first('name') }}</span><br>
+                    @endif
                 </div>
                 <div class="col col-6">
-                    <input type="text" name="last_name" placeholder="Apellidos" class="form-control input">
+                    <input type="text" name="last_name" placeholder="Apellidos" class="form-control input" value="{{old('last_name')}}">
+                    @if ($errors->has('last_name'))
+                    <span class="error text-danger" for="last_name">{{ $errors->first('last_name') }}</span><br>
+                    @endif
                 </div>
             </div>
-            <input type="text" name="email" placeholder="Correo electronico" class="form-control input">
-            <input type="text" name="ci" placeholder="Cedula de identidad" class="form-control input">
-            <input type="password" name="password" placeholder="Contraseña" class="form-control input">
+            <input type="text" name="email" placeholder="Correo electronico" class="form-control input" value="{{old('email')}}">
+            @if ($errors->has('email'))
+            <span class="error text-danger" for="email">{{ $errors->first('email') }}</span><br>
+            @endif
+            <input type="text" name="ci" placeholder="Cedula de identidad" class="form-control input" value="{{old('ci')}}">
+            @if ($errors->has('ci'))
+            <span class="error text-danger" for="ci">{{ $errors->first('ci') }}</span><br>
+            @endif
+            <input type="password" name="password" placeholder="Contraseña" class="form-control input" value="{{old('password')}}">
+            @if ($errors->has('password'))
+            <span class="error text-danger" for="password">{{ $errors->first('password') }}</span><br>
+            @endif
             <label class="label">Seleccione un rol:</label><br>
             <select name="rol" class="form-select">
-                <option value="1">Administrador</option>
+                @foreach ($roles as $rol )
+                <option value="{{$rol->id}}">{{$rol->name}}</option>
+                @endforeach
             </select>
             <div class="row">
                 <div class="col">

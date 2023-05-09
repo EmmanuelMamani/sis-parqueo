@@ -18,9 +18,14 @@ Route::get('/menu', [userController::class,'menu'])->name('menu');
 
 /********************************Usuario****************************************** */
 Route::get('/registro_usuario',[userController::class,'ver_registrar_usuario'])->name('registro_usuario');
-Route::get('/completar_perfil', [userController::class,'ver_completar_perfil'])->name('completar_perfil');
+Route::post('/registro_usuario',[userController::class,'registrar'])->name('registro_usuario');
 Route::get('/asignar_rol',[userController::class,'ver_asignar_rol'])->name('asignar_rol');
+Route::post('/asignar_rol',[userController::class,'asignar_rol'])->name('asignar_rol');
 Route::get('/asignar_horario',[guardiaController::class,'ver_asignar_horario'])->name('asignar_horario');
+Route::post('/asignar_horario',[guardiaController::class,'asignar_horario'])->name('asignar_horario');
+
+Route::get('/completar_perfil', [userController::class,'ver_completar_perfil'])->name('completar_perfil');
+
 Route::get('/solicitud_parqueo',[parqueoController::class,'ver_solicitar_parqueo'])->name('solicitud_parqueo');
 Route::get('/registro_entrada_vehiculo',[guardiaController::class,'ver_registro_vehiculo'])->name('registro_entrada_vehiculo');
 Route::get('/solicitudes', [parqueoController::class,'ver_solicitudes'])->name('solicitudes');

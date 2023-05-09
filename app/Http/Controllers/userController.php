@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use App\Models\rol;
 class userController extends Controller
 {
     //
@@ -31,19 +31,26 @@ class userController extends Controller
         return redirect('/');
     }
     public function ver_registrar_usuario(){
-        return view('registro_usuario');
+        $roles=rol::all();
+        return view('registro_usuario',['roles'=>$roles]);
     }
     public function ver_completar_perfil(){
         return view('completar_perfil');
     }
     public function ver_asignar_rol(){
-        return view('asignacion_rol');
+        $usuarios=user::all();
+        $roles=rol::all();
+        return view('asignacion_rol',['usuarios'=>$usuarios,'roles'=>$roles]);
     }
     public function completar_perfil(){
 
     }
-    public function asignar_rol(){
-
+    public function asignar_rol(Request $request){
+        
+        $usuario=user::find($request->usuario);
+        $usuario->rol_id=$request->rol;
+        $usuario->save();
+        return redirect('/menu');
     }
 
     public function registrar(userRequest $request){
@@ -52,8 +59,9 @@ class userController extends Controller
         $user->last_name=$request->last_name;
         $user->email=$request->email;
         $user->ci=$request->ci;
-        $user->password=Hash::make();
+        $user->password=bcrypt($request->password);
+        $user->rol_id=$request->rol;
         $user->save();
-       // return redirect(route());
+       return redirect('/menu');
     }
 }
