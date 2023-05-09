@@ -25,7 +25,7 @@ class userRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'bail|required|regex:/^[a-zA-Z\s áéíóúÁÉÍÓÚñÑ ._]+$/u|min:5|max:50',
+            'name'=>'bail|required|regex:/^[a-zA-Z\s áéíóúÁÉÍÓÚñÑ ]+$/u|min:5|max:50',
             'last_name'=>'bail|required|regex:/^[a-zA-Z\s áéíóúÁÉÍÓÚñÑ ._]+$/u|min:5|max:50',
             'email'=>'bail|required|email|regex:/^[a-zA-Z\s 0-9 @ . _]+$/|unique:users,email',
             'ci'=>'bail|required|integer|digits_between:5,9|unique:users,ci',

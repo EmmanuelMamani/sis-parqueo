@@ -21,15 +21,27 @@
            <div class="row">
                 <div class="col-6">
                     <label>Nombre del cliente</label>
-                    <input type="text" class="form-control input">
+                    <input type="text" class="form-control input" name='name' value="{{old('name')}}"><br>
+                    @error('name')
+                    <span class="error text-danger">{{$message}}</span><br>
+                    @enderror
                     <label>Motivo de pago</label>
-                    <input type="text" class="form-control input">
+                    <input type="text" class="form-control input" name="motivo" value="{{old('motivo')}}"><br>
+                    @error('motivo')
+                    <span class="error text-danger">{{$message}}</span><br>
+                    @enderror
                     <label>Carnet de identidad</label>
-                    <input type="text" class="form-control input">
+                    <input type="text" class="form-control input" name="ci" value="{{old('ci')}}"><br>
+                    @error('ci')
+                    <span class="error text-danger">{{$message}}</span><br>
+                    @enderror
                 </div>
                 <div class="col-6">
                     <label>Comprobante</label>br
-                    <input type="file"class="form-control input" >
+                    <input type="file"class="form-control input" name="comprobante">
+                    @error('comprobante')
+                    <span class="error text-danger">{{$message}}</span><br>
+                    @enderror
                     <img id="imagen" src="https://borealtech.com/wp-content/uploads/2018/10/codigo-qr-1024x1024-1.jpg" alt="">
                 </div>
            </div>

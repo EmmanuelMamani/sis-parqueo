@@ -11,8 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\rol;
 use App\Models\vehiculo;
-class userController extends Controller
-{
+class userController extends Controller{
     //
     public function menu(){
         $rol=Auth::user()->rol->name;
@@ -60,6 +59,7 @@ class userController extends Controller
         $perfil->licencia=$request->licencia;
         $perfil->ocupación=$request->ocupacion;
         $perfil->save();
+
         $vehuculo=new vehiculo;
         $vehuculo->marca=$request->marca;
         $vehuculo->año=$request->año;
@@ -69,6 +69,7 @@ class userController extends Controller
         $vehuculo->soat=$request->soat;
         $vehuculo->perfil_id=$perfil->id;
         $vehuculo->save();
+
         return redirect('/menu');
     }
     public function asignar_rol(Request $request){
