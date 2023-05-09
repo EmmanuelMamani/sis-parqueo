@@ -10,11 +10,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\rol;
+use App\Models\vehiculo;
 class userController extends Controller
 {
     //
     public function menu(){
-         return view('menu');
+        $rol=Auth::user()->rol->name;
+        $perfil=Auth::user()->perfil;
+        if($rol=='cliente' && $perfil == NULL){
+            return view('completar_perfil');
+        }
+      return view('menu');
     }
     public function autentificacion(Request $request){
         $credentials=request()->only('email','password');
@@ -52,9 +58,17 @@ class userController extends Controller
         $perfil->direccion=$request->direccion;
         $perfil->fecha_nac=$request->nacimiento;
         $perfil->licencia=$request->licencia;
-        $perfil->ocupacion=$request->ocupacion;
+        $perfil->ocupación=$request->ocupacion;
         $perfil->save();
-
+        $vehuculo=new vehiculo;
+        $vehuculo->marca=$request->marca;
+        $vehuculo->año=$request->año;
+        $vehuculo->modelo=$request->modelo;
+        $vehuculo->placa=$request->placa;
+        $vehuculo->tipo_vehiculo=$request->tipo;
+        $vehuculo->soat=$request->soat;
+        $vehuculo->perfil_id=$perfil->id;
+        $vehuculo->save();
         return redirect('/menu');
     }
     public function asignar_rol(Request $request){
