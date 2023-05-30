@@ -1,9 +1,17 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthenticatedSessionController;
+use App\Http\Controllers\RegistroController;
+use App\Http\Controllers\AdministrativoController;
+use App\Http\Controllers\pagosqrcontroller;
+use App\Http\Controllers\PermisoController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SolicitudController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\VehiculoController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\userController;
-use App\Http\Controllers\guardiaController;
-use App\Http\Controllers\parqueoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,33 +22,131 @@ use App\Http\Controllers\parqueoController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/menu', [userController::class,'menu'])->name('menu');
 
-/********************************Usuario****************************************** */
-Route::get('/registro_usuario',[userController::class,'ver_registrar_usuario'])->name('registro_usuario');
-Route::post('/registro_usuario',[userController::class,'registrar'])->name('registro_usuario');
-Route::get('/asignar_rol',[userController::class,'ver_asignar_rol'])->name('asignar_rol');
-Route::post('/asignar_rol',[userController::class,'asignar_rol'])->name('asignar_rol');
-Route::get('/asignar_horario',[guardiaController::class,'ver_asignar_horario'])->name('asignar_horario');
-Route::post('/asignar_horario',[guardiaController::class,'asignar_horario'])->name('asignar_horario');
-Route::get('/registro_entrada_vehiculo',[guardiaController::class,'ver_registro_vehiculo'])->name('registro_entrada_vehiculo');
-Route::post('/registro_entrada_vehiculo',[guardiaController::class,'registro_vehiculo'])->name('registro_entrada_vehiculo');
-Route::get('/completar_perfil', [userController::class,'ver_completar_perfil'])->name('completar_perfil');
-Route::post('/completar_perfil',[userController::class,'completar_perfil'])->name('perfil_completo');
-Route::get('/solicitud_parqueo',[parqueoController::class,'ver_solicitar_parqueo'])->name('solicitud_parqueo');
-Route::post('/solicitud_parqueo',[parqueoController::class,'solicitar_parqueo'])->name('solicitud_parqueo');
-Route::get('/solicitudes', [parqueoController::class,'ver_solicitudes'])->name('solicitudes');
-Route::get('/responder_solicitud/{id}',[parqueoController::class,'ver_responder_solicitud'])->name('responder_solicitud');
-Route::post('/responder_solicitud/{id}',[parqueoController::class,'responder_solicitud'])->name('responder_solicitud');
-Route::get('/cambiar_plaza', [parqueoController::class,'ver_cambiar_parqueo'])->name('cambiar_plaza');
-Route::get('/confirmacion_cambio_plaza/{id}', [parqueoController::class,'confirmacion_cambio_plaza'])->name('confirmacion_cambio_plaza');
-Route::get('/registro_parqueo', [parqueoController::class,'ver_registrar_parqueo'])->name('registro_parqueo');
-Route::post('/registro_parqueo', [parqueoController::class,'registrar_parqueo'])->name('registro_parqueos');
-Route::get('/pagos_pendientes', [parqueoController::class,'pagos_pendientes'])->name('pagos_pendientes');
-Route::get('/pagar_parqueo', [parqueoController::class,'ver_registro_pago'])->name('pagar_parqueo');
-Route::post('/pagar_parqueo', [parqueoController::class,'registro_pago'])->name('pagar_parqueo');
-/**********************************login*********************************/
-Route::post('/',[userController::class,'autentificacion'])->name('login');
-Route::get('/logout',[userController::class,'logout'])->name('logout');
-Route::get('/', function () {return view('login');})->name('login');
+Route::get('/', function () {
+    return view('index');
+})->name('login');
+Route::get('/login', function () {
+    return view('login');
+})->name('login.create');
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+
+Route::get('/myindex', [LoginController::class, 'index'])->name('my.index');
+
+
+Route::get('/recuperar', function () {
+    return 'recuperar cuenta';
+})->name('recuperar');
+
+
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])
+    ->name('login.store');
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->name('logout');
+
+
+Route::get('/registroCliente/{user}', [RegistroController::class, 'edit'])
+    ->name('registroCliente');
+
+Route::post('/registroCliente', [RegistroController::class, 'store'])
+    ->name('registroCliente.store');
+
+Route::put('/registroCliente/{user}', [RegistroController::class, 'update'])
+    ->name('registroCliente.update');
+/*
+Route::get('/registroCliente', function () {
+    return view('registroCliente');
+}) -> name('registroCliente');*/
+
+Route::get('/registroAdministrativo', [AdministrativoController::class, 'create'])->name('registroAdministrativo');
+Route::post('/registroAdministrativo', [AdministrativoController::class, 'store'])
+    ->name('registroAdministrativo.store');
+
+
+Route::get('/Asignaciondehorario', function () {
+    return view('Asignaciondehorario');
+})->name('Asignaciondehorario');
+
+Route::get('/listarUsuarios', function () {
+    return view('listarUsuario');
+})->name('listarUsuario');
+
+Route::delete('/eliminar/{user}', [UserController::class, 'destroy'])
+    ->name('user.delete');
+
+
+
+Route::get('/solicitudparqueo2', function () {
+    return view('solicitudparqueo');
+})->name('solicitudparqueo');
+
+Route::get('/registroEntradasalida', function () {
+    return view('registroEntradasalida');
+})->name('registroEntradasalida');
+
+
+Route::get('/editarPerfil', function () {
+    return view('editar');
+})->name('editarPerfil');
+
+Route::put('/editarPerfil/{user}', [UserController::class, 'update'])
+    ->name('user.update');
+
+
+Route::get('/realizarSolicitud', function () {
+    return view('realizarSolicitud');
+})->name('realizarSolicitud');
+Route::post('/realizarSolicitud', [SolicitudController::class, 'store'])
+    ->name('realizarSolicitud.store');
+
+Route::get('/asignarRoles', function () {
+    return view('roles');
+})->name('asignarRoles');
+
+Route::post('/asignarRoles', [RoleController::class, 'store'])
+    ->name('asignarRoles.store');
+
+Route::delete('//eliminarRol/{role}', [RoleController::class, 'destroy'])
+    ->name('asignarRoles.delete');
+Route::get('/asignarRoles/{user}', [RoleController::class, 'edit'])
+    ->name('asignarRoles.edit');
+Route::put('/asignarRoles/{user}', [RoleController::class, 'update'])
+    ->name('asignarRoles.update');
+
+Route::get('/asignarPermiso/{role}', [PermisoController::class, 'edit'])
+    ->name('asignarPermiso.edit');
+Route::put('/asignarPermiso/{role}', [PermisoController::class, 'update'])
+    ->name('asignarPermiso.update');
+
+
+
+
+Route::get('/crearPlazas', function () {
+    return view('crearPlazas');
+})->name('crearPlazas');
+
+
+
+
+Route::get('/registrarVehiculo/{user}', [VehiculoController::class, 'edit'])
+    ->name('registrarVehiculo');
+
+Route::post('/registrarVehiculo/{user}', [VehiculoController::class, 'store'])
+    ->name('registrarVehiculo.store');
+
+
+
+//generador del pago qr salvar materia :'v
+Route::get('/pagoqr', function () {
+    return view('/pagoqr');
+})->name('pagoqr');
+Route::post('/pagoqr', [pagosqrcontroller::class, 'store'])
+    ->name('pagoqr.store');
+
+//Seccion emma
+
+Route::get('/vista',function(){return view('vista');});

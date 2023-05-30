@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Turno;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // User::factory(10)->create();
+        // \App\Models\User::factory(10)->create();
+        //$this->call(TurnoSeeder::class);
+        Turno::factory(10)->create();
+        User::factory(10)->create();
+        $this->call(RoleSeeder::class);
     }
 }

@@ -2,93 +2,44 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\completarPerfil;
-use App\Http\Requests\userRequest;
-use App\Models\perfil;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\rol;
-use App\Models\vehiculo;
-class userController extends Controller{
+use Illuminate\Support\Facades\Storage;
+
+class UserController extends Controller
+{
     //
-    public function menu(){
-        $rol=Auth::user()->rol->name;
-        $perfil=Auth::user()->perfil;
-        if($rol=='cliente' && $perfil == NULL){
-            return view('completar_perfil');
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return back()->with('success', 'Usuario Eliminado Exitosamente');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+        $user->fecha_nac = $request['fecha_nac'];
+        $user->telefono = $request['telefono'];
+        $user->direccion = $request['direccion'];
+        if(trim($request->file)!=''){
+            $imagen = $request->file('foto_perfil')->store('public/imagenes');
+            $url = Storage::url($imagen);
+            $user->foto_perfil = $url;
         }
-      return view('menu');
-    }
-    public function autentificacion(Request $request){
-        $credentials=request()->only('email','password');
-        if(Auth::attempt($credentials)){
-            request()->session()->regenerate();
-                return redirect('/menu');
-        }else{
-            return "incorrecto";
+        //$data = $request->only('name', 'email', 'telefono', 'fecha_nac', 'direccion');
+        if (trim($request->password) != '') {
+            $user->password = Hash::make($request['password']);
         }
 
+        $user->update();
+        return redirect()->back();
     }
-    public function logout(){
-        Auth::logout();
-        request()->session()->invalidate();
-        request()->session()->regenerateToken();
-        return redirect('/');
-    }
-    public function ver_registrar_usuario(){
-        $roles=rol::all();
-        return view('registro_usuario',['roles'=>$roles]);
-    }
-    public function ver_completar_perfil(){
-        return view('completar_perfil');
-    }
-    public function ver_asignar_rol(){
-        $usuarios=user::all();
-        $roles=rol::all();
-        return view('asignacion_rol',['usuarios'=>$usuarios,'roles'=>$roles]);
-    }
-    public function completar_perfil(completarPerfil $request){
-        $perfil=new perfil();
-        $perfil->user_ci=Auth::user()->ci;
-        $perfil->telefono=$request->telefono;
-        $perfil->descripcion=$request->descripcion;
-        $perfil->direccion=$request->direccion;
-        $perfil->fecha_nac=$request->nacimiento;
-        $perfil->licencia=$request->licencia;
-        $perfil->ocupación=$request->ocupacion;
-        $perfil->save();
 
-        $vehuculo=new vehiculo;
-        $vehuculo->marca=$request->marca;
-        $vehuculo->año=$request->año;
-        $vehuculo->modelo=$request->modelo;
-        $vehuculo->placa=$request->placa;
-        $vehuculo->tipo_vehiculo=$request->tipo;
-        $vehuculo->soat=$request->soat;
-        $vehuculo->perfil_id=$perfil->id;
-        $vehuculo->save();
+    public function edit(){
 
-        return redirect('/menu');
-    }
-    public function asignar_rol(Request $request){
         
-        $usuario=user::find($request->usuario);
-        $usuario->rol_id=$request->rol;
-        $usuario->save();
-        return redirect('/menu');
-    }
-
-    public function registrar(userRequest $request){
-        $user=new User();
-        $user->name=$request->name;
-        $user->last_name=$request->last_name;
-        $user->email=$request->email;
-        $user->ci=$request->ci;
-        $user->password=bcrypt($request->password);
-        $user->rol_id=$request->rol;
-        $user->save();
-       return redirect('/menu');
     }
 }
