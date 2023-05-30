@@ -102,6 +102,10 @@
                             <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Roles</span> </a>
                     </li>
                 @endcan
+                <li>
+                    <a href="{{ route('control_pagos') }}" class="nav-link px-0 align-middle">
+                        <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Control de pagos</span> </a>
+                </li>
 
             </ul>
             <hr>

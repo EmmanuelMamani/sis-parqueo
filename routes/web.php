@@ -149,4 +149,5 @@ Route::post('/pagoqr', [pagosqrcontroller::class, 'store'])
 
 //Seccion emma
 
-Route::get('/vista',function(){return view('vista');});
+Route::get('/solicitar_parqueo',function(){return view('solicitar_parqueo');});
+Route::get('/control_pagos',function(){return view('control_de_pagos');})->name('control_pagos');
