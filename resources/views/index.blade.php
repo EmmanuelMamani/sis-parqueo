@@ -44,18 +44,7 @@
                     @endif
                     <main>
                         <h1 id="titulo">Bienvenido</h1>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Notificaciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><th><a href="#">Asunto</a></th></tr>
-                                <tr><th><a href="#">Asunto</a></th></tr>
-                                <tr><th><a href="#">Asunto</a></th></tr>
-                            </tbody>
-                        </table>
+                        <h3></h3>
                     </main>
                 </div>
             </div>
