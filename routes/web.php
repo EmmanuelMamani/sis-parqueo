@@ -147,8 +147,12 @@ Route::get('/pagoqr', function () {
 Route::post('/pagoqr', [pagosqrcontroller::class, 'store'])
     ->name('pagoqr.store');
 
+    
 //Seccion emma
 
-Route::get('/solicitar_parqueo',function(){return view('solicitar_parqueo');});
+Route::get('/solicitar_parqueo',function(){return view('solicitar_parqueo');})->name('solicitar_parqueo');
 Route::get('/control_pagos',function(){return view('control_de_pagos');})->name('control_pagos');
 Route::get('/cuotas_cliente',function(){return view('cuotas_clientes');})->name('cuotas_cliente');
+Route::get('/reservas',function(){return view('reservas');})->name('reservas');
+Route::get('/responder_reserva',function(){return view('responder_solicitud');})->name('responder_solicitud');
+Route::get('/cambiar_parqueo',function(){return view('cambiar_parqueo');})->name('cambiar_parqueo');

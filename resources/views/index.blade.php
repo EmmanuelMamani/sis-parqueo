@@ -44,6 +44,7 @@
                     @endif
                     <main>
                         <h1 id="titulo">Bienvenido</h1>
+                        <h3></h3>
                     </main>
                 </div>
             </div>

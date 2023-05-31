@@ -17,3 +17,15 @@
 .input{
     width: 50%;
 }
+#asignar{
+    margin-top: 2%;
+    border-radius: 15px;
+    color: white;
+    background-color: #0B5ED7;
+}
+#cancelar{
+    margin-top: 2%;
+    border-radius: 15px;
+    color: white;
+    background-color: rgb(201, 27, 27);
+}
