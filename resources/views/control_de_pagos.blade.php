@@ -18,7 +18,7 @@
                         <th>1</th>
                         <th>Nombre Usuario</th>
                         <th>Correo@gmail.com</th>
-                        <th><a href="#">Ver detalle</a></th>
+                        <th><a href="{{route('cuotas_cliente')}}">Ver detalle</a></th>
                     </tr>
                 </tbody>
             </table>
