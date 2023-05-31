@@ -141,9 +141,8 @@ Route::post('/registrarVehiculo/{user}', [VehiculoController::class, 'store'])
 
 
 //generador del pago qr salvar materia :'v
-Route::get('/pagoqr', function () {
-    return view('/pagoqr');
-})->name('pagoqr');
+
+Route::get('/pagoqr', [pagosqrcontroller::class, 'view'])->name('pagoqr');
 Route::post('/pagoqr', [pagosqrcontroller::class, 'store'])
     ->name('pagoqr.store');
 

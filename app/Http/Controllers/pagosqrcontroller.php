@@ -9,12 +9,19 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use App\Models\pagoqr;
+use App\Models\User;
 use Validator;
 
 
 class pagosqrcontroller extends Controller
 {
     //
+
+    public function view(){
+        //de esta forma se asegura que es un usuario valido y se tiene control de sus pagos
+        $usuarios=User::all();
+        return view('/pagoqr',['usuarios'=>$usuarios]);
+    }
 
     public function store(Request $request)
     {
@@ -24,14 +31,15 @@ class pagosqrcontroller extends Controller
         $this->validate($request, [
             'nombre' => 'required|string',
             'ci' => 'required',
+            'tipo'=>'required',
             'detalle' => 'required|string',
-            'comprobante' => 'required|image|max:2048',
+            'comprobante' => 'image|max:2048|required_if:tipo,QR',
             
 
         ]);
         
         $pago = new pagoqr();
-        $pago->nombre = $request['nombre'];
+        $pago->usuario_id = $request['nombre'];
         $pago->ci = $request['ci'];
         $pago->detalle = $request['detalle'];
         $pago->monto= $request['monto'];
