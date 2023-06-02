@@ -62,6 +62,7 @@
                         <div>
                             <div class="mb4">
                                 <!-- <label>Correo Electronico</label><br> -->
+                                
                                 <input type="email" id="email" spellcheck="false" name="email"
                                     placeholder="Correo Electrónico"required
                                     pattern=".+@(gmail|hotmail|mailinator|example|outlook).(com|es|net)"
@@ -94,7 +95,7 @@
                             </div>
                         @endif
                         <div>
-                            <button type="submit" class="button buttonBlue">Ingresar</button>
+                            <button type="submit" class="button buttonBlue" name="enviarbtn">Ingresar</button>
                         </div>
                     </div>
                 </form>

@@ -61,30 +61,46 @@
             <div class="col py-3">
                 <div class="container py-3 h-100">
 
+
                     @if (session('status'))
                         <div class="alert alert-success">
                             <strong>{{ session('status') }}</strong>
                         </div>
                     @endif
+
                     <main>
 
                         <h1 align="center" class="titulo3">PAGOS CON CODIGO QR</h1>
                         <h2>Ingresar datos para registro</h2>
 
+
                         <div class="card-body">
                             <form action="{{ route('pagoqr.store') }}" method="POST" enctype="multipart/form-data">
+
                                 @csrf
                                 <h1 class="subtitulos2">Ingresar Nombre Completo</h1>
+                                <?php
+                                if(isset($_GET['enviarbtn'])){
+                                 //   $m = $_GET['email'];
+                                }
+
+                                //$m = $_GET['email'];
+                                ?>
                                 <input class="controls1 " id="nombre" type="search" name="nombre"
-                                    placeholder="Ingresa nombre completo">
+                                    placeholder="Ingresa nombre completo"  >
                                 @error('nombre')
                                     <br>
                                     <smal>*{{ $message }}</smal>
                                 @enderror
                                 <br>
                                 <h1 class="subtitulos2">Ingresar detalle de pago</h1>
-                                <input class="controls1 " id="detalle" type="text" name="detalle"
-                                    placeholder="Ingrese detalle de pago">
+                                <input list="detalle" name="detalle">
+                                    <datalist id="detalle" name="detalle">
+                                        <option value="pago mensualmente"></option>
+                                        <option value="Pago de deudas atrasadas"></option>
+                                        <option value="Pagos por adelantado"></option>
+
+                                        </datalist>
 
                                 @error('detalle')
                                     <br>
@@ -156,7 +172,7 @@
                                 <br>
 
 
-                                
+
                                 <div>
                                     <label for="nombre" class="comprobante">Insertar Comprobante</label>
                                     <input align=" center" class="controls3" type="file" name="comprobante" accept="image/*"
@@ -171,21 +187,23 @@
 
                                 </div>
                                 <div>
+                <form action="{{ route('pagoqr.pdf') }}" method="GET">
                                     <input class="boton" id="registro" type="submit" name="registro"
                                         placeholder="Registrar">
                                     <p id="contar2"></p>
                                 </div>
-                            </form>
-                            
+                </form>
+
                         </div>
 
 
                         <button class="boton2" type="button" id="pro" name="pro">calcular</button>
                         <h5 hidden>valores</h5>
                         <ul id="lista" class="list-group"></ul>
-
+                   </form>
                     </main>
 
+                 </form>
                 </div>
             </div>
         </div>

@@ -2,9 +2,9 @@
 @section('main')
     <h3>Cuotas de clientes</h3><br>
     <label for="">Correo electronico:</label>
-    <input type="text" readonly value="cliente@gmail.com" class="form-control input"><br>
-    <label for="">Numero CI:</label>
-    <input type="text" readonly value="14785236" class="form-control input">
+    <input type="text" readonly value="{{$usuario->email}}" class="form-control input"><br>
+    <label for="">Telefono:</label>
+    <input type="text" readonly value="{{$usuario->telefono}}" class="form-control input">
     <br>
     <div>
         <div class="card">

@@ -21,6 +21,13 @@ class CreatePostsTable extends Migration
             $table->integer("monto")->nullable();
             $table->string("comprobante")->nullable();
             $table->timestamps();
+            $table->unsignedBigInteger('usuario_id');
+
+            //llave foranea
+            $table->foreign('usuario_id')
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

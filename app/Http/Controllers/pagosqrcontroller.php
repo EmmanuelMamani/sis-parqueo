@@ -9,14 +9,23 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use App\Models\pagoqr;
+use App\Models\User;
 use Validator;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 
 class pagosqrcontroller extends Controller
 {
-    //
+    
 
-    public function store(Request $request)
+    public function pdf(){
+       $categorias = pagoqr::all();
+        $pdf = Pdf::loadView('pagooqr.pdf', \compact('categorias'));
+          return $pdf->stream();
+     
+         }
+    public function store(Request $request,User $user)
     {
         //guardar datos
         //datos de personas facturas
@@ -35,15 +44,22 @@ class pagosqrcontroller extends Controller
         $pago->ci = $request['ci'];
         $pago->detalle = $request['detalle'];
         $pago->monto= $request['monto'];
+        $pago->usuario_id = $user->id;
       
         $imagen = $request->file('comprobante')->store('public/imagenes');
         $url = Storage::url($imagen);
         $pago->comprobante = $url;
-        //$personas->detalle = $request['detalle'];
-        
-        $pago->save();
 
-        return redirect()->back()->with('status','El pago se efectuo exitosamente! ');
+        //$personas->detalle = $request['detalle'];
+        $pago->save();
+        $categorias = pagoqr::all();
+        $pdf = Pdf::loadView('pagoqr.pdf', \compact('categorias'));
+        
+
+        
+       return $pdf->stream();
+
+       //return redirect()->back()->with('status','El pago se efectuo exitosamente! ');
         
     }
 }
