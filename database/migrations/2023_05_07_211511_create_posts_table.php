@@ -15,7 +15,7 @@ class CreatePostsTable extends Migration
     {
         Schema::create('factura2', function (Blueprint $table) {
             $table->id();
-            $table->string("nombre")->nullable();
+            $table->string("usuario_id")->nullable();
             $table->string("detalle")->nullable();
             $table->integer("ci")->nullable();
             $table->integer("monto")->nullable();

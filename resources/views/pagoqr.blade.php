@@ -79,15 +79,16 @@
 
                                 @csrf
                                 <h1 class="subtitulos2">Ingresar Nombre Completo</h1>
-                                <?php
-                                if(isset($_GET['enviarbtn'])){
-                                 //   $m = $_GET['email'];
-                                }
 
-                                //$m = $_GET['email'];
-                                ?>
-                                <input class="controls1 " id="nombre" type="search" name="nombre"
-                                    placeholder="Ingresa nombre completo"  >
+                                <select class="controls1" name="nombre" id="nombre">
+                                    @forelse ($usuarios as $usuario)
+                                        @if ($usuario->hasRole('Cliente'))
+                                            <option value="{{$usuario->id}}">{{$usuario->name}}</option>
+                                        @endif
+                                    @empty
+                                        <option value="{{$usuario->id}}">{{$usuario->name}}</option>
+                                    @endforelse
+                                </select>
                                 @error('nombre')
                                     <br>
                                     <smal>*{{ $message }}</smal>
@@ -170,10 +171,22 @@
                                     placeholder="Ingrese monto de pago" value=>
                                 <br>
                                 <br>
+<<<<<<< HEAD
 
 
 
                                 <div>
+=======
+                                <h1 class="subtitulos2">Elegir tipo de pago</h1>
+                                <select name="tipo" id="tipo" onchange="cambiar()">
+                                    <option value="QR">QR</option>
+                                    <option value="Efectivo">Efectivo</option>
+                                </select>
+                                <br>
+                                <br>
+                                
+                                <div id=inputComprobante>
+>>>>>>> 97cd3406b968052cf9c683c264c6eebba45e8f51
                                     <label for="nombre" class="comprobante">Insertar Comprobante</label>
                                     <input align=" center" class="controls3" type="file" name="comprobante" accept="image/*"
                                     id="comprobante" placeholder="Ingresa hola salida">
@@ -182,7 +195,7 @@
                                     <smal>*{{ $message }}</smal>
                                 @enderror
                                 </div>
-                                <div class="imagen">
+                                <div class="imagen" id=imagenQr>
                                     <img src="{{ asset('img/qr.jpeg') }}" width="600px" height="600px">
 
                                 </div>
@@ -216,6 +229,25 @@
         var cont = document.getElementById('contar2');
         var contador = 0;
         var contar = 100;
+
+
+        function cambiar(){
+            
+            var comprobante=document.getElementById('inputComprobante');
+            var imagen=document.getElementById('imagenQr');
+            var tipo=document.getElementById('tipo');
+           
+            if(tipo.options[tipo.selectedIndex].value == 'QR'){
+                console.log('entra');
+                comprobante.style.visibility='visible';
+                imagen.style.visibility='visible';
+            }else{
+                console.log(comprobante);
+                comprobante.style.visibility='hidden';
+                imagen.style.visibility='hidden';
+            }
+        }
+
         boton.addEventListener('click', function() {
 
             //obtencion de valores de los meses para la suma del
