@@ -61,20 +61,25 @@
             <div class="col py-3">
                 <div class="container py-3 h-100">
 
+
                     @if (session('status'))
                         <div class="alert alert-success">
                             <strong>{{ session('status') }}</strong>
                         </div>
                     @endif
+
                     <main>
 
                         <h1 align="center" class="titulo3">PAGOS CON CODIGO QR</h1>
                         <h2>Ingresar datos para registro</h2>
 
+
                         <div class="card-body">
                             <form action="{{ route('pagoqr.store') }}" method="POST" enctype="multipart/form-data">
+
                                 @csrf
                                 <h1 class="subtitulos2">Ingresar Nombre Completo</h1>
+
                                 <select class="controls1" name="nombre" id="nombre">
                                     @forelse ($usuarios as $usuario)
                                         @if ($usuario->hasRole('Cliente'))
@@ -84,15 +89,19 @@
                                         <option value="{{$usuario->id}}">{{$usuario->name}}</option>
                                     @endforelse
                                 </select>
-                                
                                 @error('nombre')
                                     <br>
                                     <smal>*{{ $message }}</smal>
                                 @enderror
                                 <br>
                                 <h1 class="subtitulos2">Ingresar detalle de pago</h1>
-                                <input class="controls1 " id="detalle" type="text" name="detalle"
-                                    placeholder="Ingrese detalle de pago">
+                                <input list="detalle" name="detalle">
+                                    <datalist id="detalle" name="detalle">
+                                        <option value="pago mensualmente"></option>
+                                        <option value="Pago de deudas atrasadas"></option>
+                                        <option value="Pagos por adelantado"></option>
+
+                                        </datalist>
 
                                 @error('detalle')
                                     <br>
@@ -162,6 +171,12 @@
                                     placeholder="Ingrese monto de pago" value=>
                                 <br>
                                 <br>
+<<<<<<< HEAD
+
+
+
+                                <div>
+=======
                                 <h1 class="subtitulos2">Elegir tipo de pago</h1>
                                 <select name="tipo" id="tipo" onchange="cambiar()">
                                     <option value="QR">QR</option>
@@ -171,6 +186,7 @@
                                 <br>
                                 
                                 <div id=inputComprobante>
+>>>>>>> 97cd3406b968052cf9c683c264c6eebba45e8f51
                                     <label for="nombre" class="comprobante">Insertar Comprobante</label>
                                     <input align=" center" class="controls3" type="file" name="comprobante" accept="image/*"
                                     id="comprobante" placeholder="Ingresa hola salida">
@@ -184,21 +200,23 @@
 
                                 </div>
                                 <div>
+                <form action="{{ route('pagoqr.pdf') }}" method="GET">
                                     <input class="boton" id="registro" type="submit" name="registro"
                                         placeholder="Registrar">
                                     <p id="contar2"></p>
                                 </div>
-                            </form>
-                            
+                </form>
+
                         </div>
 
 
                         <button class="boton2" type="button" id="pro" name="pro">calcular</button>
                         <h5 hidden>valores</h5>
                         <ul id="lista" class="list-group"></ul>
-
+                   </form>
                     </main>
 
+                 </form>
                 </div>
             </div>
         </div>

@@ -129,6 +129,15 @@
                             
                                         </div>
                                     </div>
+                                    <div class="form-outline form-white">
+                                                <label class="form-label" for="form3Examplea4">Mensualidad</label>
+                                                <input type="number" name="mensualidad" id="form3Examplea4" values=100
+                                                    class="form-control form-control-lg"
+                                                    class="@error('mensualidad') is-invalid @enderror" />
+                                                @error('mensualidad')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
                             
                             
                             

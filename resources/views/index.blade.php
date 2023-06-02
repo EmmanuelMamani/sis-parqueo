@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style-font.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style4.css') }}" />
+    <link href="{{ asset('css/comentarios.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -44,7 +45,33 @@
                     @endif
                     <main>
                         <h1 id="titulo">Bienvenido</h1>
-                        <h3></h3>
+                        <br>
+                        <h4>Anuncios</h4>
+                         <?php
+                            $conexion=mysqli_connect("localhost","root","","prueba_tis");
+                            $resultado= mysqli_query($conexion, 'SELECT * FROM anuncios');
+
+                            while ($comentario = mysqli_fetch_object($resultado)) {
+                                ?>
+                            <div class="lead">
+                                  
+                                <b class="anuncio"><?php echo($comentario->nombre); ?> 
+                                </b>
+                                <br>
+                                <p class="fecha">
+                                   fecha : <?php echo($comentario->created_at);?> 
+                                   </p>
+                                <h4>Notifica a los usuarios:</h4>
+                                
+                                <p class="anuncio2">
+                                  <?php echo ($comentario->comentario);?>
+                                  </p>
+                               
+                                <hr />
+
+                               <?php
+                              }
+                                                ?>
                     </main>
                 </div>
             </div>

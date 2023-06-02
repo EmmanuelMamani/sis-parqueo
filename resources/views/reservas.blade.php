@@ -11,7 +11,6 @@
                         <th>Nombre</th>
                         <th>Fecha</th>
                         <th>Responder</th>
-                        <th>Cambiar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,7 +19,6 @@
                         <th>Nombre Usuario</th>
                         <th>30/05/2023</th>
                         <th><a href="{{route('responder_solicitud')}}">Responder</a></th>
-                        <th><a href="{{route('cambiar_parqueo')}}">Cambiar</a></th>
                     </tr>
                 </tbody>
             </table>

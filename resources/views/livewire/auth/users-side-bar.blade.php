@@ -23,35 +23,43 @@
                 </li>
             @endguest
             @auth
-                @if (implode(', ', Auth::user()->roles->pluck('name')->toArray())== 'Admin')
-                <li>
-                    <a href="{{ route('crearPlazas') }}" class="nav-link px-0 align-middle ">
-                        <i class="fs-4 bi-p-square-fill"></i> <span class="ms-1 d-none d-sm-inline">Crear Parking</span></a>
-                </li>
-                <li>
-                    <a href="{{ route('reservas') }}" class="nav-link px-0 align-middle ">
-                        <i class="fs-4 bi-p-square-fill"></i> <span class="ms-1 d-none d-sm-inline">Reservas</span></a>
-                </li>
-                <li>
-                    <a href="{{ route('control_pagos') }}" class="nav-link px-0 align-middle">
-                        <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Control de pagos</span> </a>
-                </li>
-                @endif
-                @if (implode(', ', Auth::user()->roles->pluck('name')->toArray())== 'Cliente')
-                <li>
-                    <a href="{{ route('solicitar_parqueo') }}" class="nav-link px-0 align-middle ">
-                        <i class="fs-4 bi-p-square-fill"></i> <span class="ms-1 d-none d-sm-inline">Solicitar Parking</span></a>
-                </li>
-                <li>
-                    <a href="{{ route('pagoqr') }}" class="nav-link px-0 align-middle">
-                        <i class="fs-4 bi-credit-card"></i> <span class="ms-1 d-none d-sm-inline">Pagos QR</span> </a>
-                </li>
-                <li>
-                    <a href="{{ route('registrarVehiculo', $user->id) }}" class="nav-link px-0 align-middle ">
-                        <i class="fs-4 bi-car-front-fill"></i> <span class="ms-1 d-none d-sm-inline">Añadir mi
-                            Vehiculo</span></a>
-                </li>
-                @endif
+            @if (implode(', ', Auth::user()->roles->pluck('name')->toArray())== 'Admin')
+            <li>
+                <a href="{{ route('crearPlazas') }}" class="nav-link px-0 align-middle ">
+                    <i class="fs-4 bi-p-square-fill"></i> <span class="ms-1 d-none d-sm-inline">Crear Parking</span></a>
+            </li>
+            <li>
+                <a href="{{ route('Controlpagos') }}" class="nav-link px-0 align-middle ">
+                    <i class="fs-4 bi-p-square-fill"></i> <span class="ms-1 d-none d-sm-inline">Control pagos</span></a>
+            </li>
+            <li>
+                <a href="{{route('reservas')}}" class="nav-link px-0 align-middle ">
+                    <i class="fs-4 bi-p-square-fill"></i> <span class="ms-1 d-none d-sm-inline">Reservas</span></a>
+            </li>
+            <li>
+                <a href="{{ route('anuncios') }}" class="nav-link px-0 align-middle ">
+                    <i class="fs-4 bi-p-square-fill"></i> <span class="ms-1 d-none d-sm-inline">Anuncios</span></a>
+            </li>
+            @endif
+            @if (implode(', ', Auth::user()->roles->pluck('name')->toArray())== 'Cliente')
+            <li>
+                <a href="{{route('solicitar_parqueo')}}" class="nav-link px-0 align-middle ">
+                    <i class="fs-4 bi-p-square-fill"></i> <span class="ms-1 d-none d-sm-inline">Reservar Parking</span></a>
+            </li>
+            <li>
+                <a href="{{ route('pagoqr') }}" class="nav-link px-0 align-middle">
+                    <i class="fs-4 bi-credit-card"></i> <span class="ms-1 d-none d-sm-inline">Pagos QR</span> </a>
+            </li>
+            <li>
+                <a href="{{ route('registrarVehiculo', $user->id) }}" class="nav-link px-0 align-middle ">
+                    <i class="fs-4 bi-car-front-fill"></i> <span class="ms-1 d-none d-sm-inline">Añadir mi
+                        Vehiculo</span></a>
+            </li>
+            <li>
+                <a href="{{route('Comentarios')}}" class="nav-link px-0 align-middle ">
+                    <i class="fs-4 bi-p-square-fill"></i> <span class="ms-1 d-none d-sm-inline">Comentarios</span></a>
+            </li>
+            @endif
                 @can('invitado.completar', Model::class)
                     <li>
                         <a href="{{ route('registroCliente', $user->id) }}" class="nav-link px-0 align-middle ">
@@ -73,7 +81,6 @@
                                 Administrativo</span></a>
                     </li>
                 @endcan
-
                 @can('guardia.listar.ver', Model::class)
                     <li>
                         <a href="{{ route('registroEntradasalida') }}" class="nav-link px-0 align-middle ">
@@ -82,7 +89,7 @@
                     </li>
                     <li>
 
-                        <a href="{{route('Asignaciondehorario')}}" class="nav-link px-0 align-middle">
+                        <a href="#submenu3" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-calendar3"></i> <span class="ms-1 d-none d-sm-inline">ver Horario</span> </a>
                     </li>
                 @endcan

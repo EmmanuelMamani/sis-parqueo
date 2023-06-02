@@ -17,6 +17,11 @@ class pagoqr extends Model
         'monto',
         'ci',
         'comprobante',
+        'usuario_id',
         
     ];
+    public function usuario()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -10,7 +10,10 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehiculoController;
+use App\Http\Controllers\Controllerscomentarios;
+use App\Http\Controllers\Controlleranuncios;
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -146,12 +149,45 @@ Route::get('/pagoqr', [pagosqrcontroller::class, 'view'])->name('pagoqr');
 Route::post('/pagoqr', [pagosqrcontroller::class, 'store'])
     ->name('pagoqr.store');
 
-    
-//Seccion emma
+Route::get('/pdf', function () {
+        return view('/pdf');
+       })->name('pdf');
+//
+ Route::post('/pdf', [pagosqrcontroller::class, 'pdf'])
+    ->name('pagoqr.pdf');
 
-Route::get('/solicitar_parqueo',function(){return view('solicitar_parqueo');})->name('solicitar_parqueo');
-Route::get('/control_pagos',function(){return view('control_de_pagos');})->name('control_pagos');
-Route::get('/cuotas_cliente',function(){return view('cuotas_clientes');})->name('cuotas_cliente');
-Route::get('/reservas',function(){return view('reservas');})->name('reservas');
-Route::get('/responder_reserva',function(){return view('responder_solicitud');})->name('responder_solicitud');
-Route::get('/cambiar_parqueo',function(){return view('cambiar_parqueo');})->name('cambiar_parqueo');
+
+Route::get('/AsignarTarifa', function () {
+        return view('/AsignarTarifa');
+       })->name('AsignarTarifa');
+
+Route::get('/Comentarios', function () {
+        return view('/comentarios');
+       })->name('Comentarios');
+
+Route::post('/store', [Controllerscomentarios::class, 'store'])
+    ->name('Comentarios.store');
+//
+Route::get('/Controlpagos', function () {
+    $usuarios=User::all();
+    return view('/Controlpagos',['usuarios'=>$usuarios]);
+   })->name('Controlpagos');
+   
+//estado de la cuenta:
+
+Route::get('/pagare', function () {
+    return view('/pagare');
+   })->name('pagare');
+
+Route::get('/anuncios', function () {
+    return view('/anuncios');
+   })->name('anuncios');
+Route::post('/anuncios', [Controlleranuncios::class, 'store'])
+    ->name('anuncios.store');
+
+
+    /*******************************rutas */
+    Route::get('/solicitar_parqueo',function(){return view('solicitar_parqueo');})->name('solicitar_parqueo');
+    Route::get('/cuotas_cliente/{id}',function($id){$usuario=User::find($id);return view('cuotas_clientes',['usuario'=>$usuario]);})->name('cuotas_cliente');
+    Route::get('/reservas',function(){return view('reservas');})->name('reservas');
+    Route::get('/responder_reserva',function(){return view('responder_solicitud');})->name('responder_solicitud');
