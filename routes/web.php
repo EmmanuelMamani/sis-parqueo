@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehiculoController;
 use App\Http\Controllers\Controllerscomentarios;
 use App\Http\Controllers\Controlleranuncios;
+use App\Http\Controllers\zonaController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 
@@ -128,9 +129,7 @@ Route::put('/asignarPermiso/{role}', [PermisoController::class, 'update'])
 
 
 
-Route::get('/crearPlazas', function () {
-    return view('crearPlazas');
-})->name('crearPlazas');
+Route::get('/crearPlazas',[zonaController::class,'verParqueos'])->name('crearPlazas');
 
 
 
