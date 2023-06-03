@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSolicitudParqueosTable extends Migration
+class CreateRespuestasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateSolicitudParqueosTable extends Migration
      */
     public function up()
     {
-        Schema::create('solicitud_parqueos', function (Blueprint $table) {
+        Schema::create('respuestas', function (Blueprint $table) {
             $table->id();
-            $table->integer('usuario_id');
-            $table->date('fecha');
-            $table->time('hora_inicio');
-            $table->time('hora_fin');
-            $table->boolean('respondido')->default(false);
+            $table->integer('solicitud_id');
+            $table->integer('parqueo_id');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateSolicitudParqueosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('solicitud_parqueos');
+        Schema::dropIfExists('respuestas');
     }
 }

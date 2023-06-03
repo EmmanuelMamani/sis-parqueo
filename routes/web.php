@@ -192,10 +192,9 @@ Route::post('/anuncios', [Controlleranuncios::class, 'store'])
     Route::get('/solicitar_parqueo',[parqueoController::class,'vista'])->name('solicitar_parqueo');
     Route::post('/solicitar',[parqueoController::class,'registrar'])->name('solicitar');
     Route::get('/cuotas_cliente/{id}',function($id){$usuario=User::find($id);return view('cuotas_clientes',['usuario'=>$usuario]);})->name('cuotas_cliente');
-    Route::get('/reservas',function(){return view('reservas'); })->name('reservas');
-    Route::get('/responder_reserva',function(){
-        $parqueos=parqueo::all();
-        return view('responder_solicitud',['parqueos'=>$parqueos]);})->name('responder_solicitud');
+    Route::get('/reservas',[parqueoController::class,'reservas'])->name('reservas');
+    Route::get('/responder_reserva/{id}',[parqueoController::class,'responder'])->name('responder_solicitud');
+    Route::post('/responder',[parqueoController::class,'registrar_respuesta'])->name('responder');
 
     Route::post('/registrar_zona',[zonaController::class,'registrarZona'])->name('registrar_zona');
     Route::get('/notificaciones',[notificacionController::class,'notificaciones'])->name('notificaciones');

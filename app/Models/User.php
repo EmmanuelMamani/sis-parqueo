@@ -58,4 +58,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(notificacion::class);
     }
+    public function solicitud_parqueo(){
+        return $this->hasMany(SolicitudParqueo::class,'usuario_id');
+    }
 }
