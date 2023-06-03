@@ -21,21 +21,26 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @forelse ($usuario->pagos as $pago)
                         <tr> 
-                            <th>30/05/2023</th>
-                            <th>Mayo</th>
-                            <th>Plaza 1</th>
-                            <th>200 Bs.</th>
+                            <th>{{$pago->created_at}}</th>
+                            <th>{{date("F",strtotime($pago->created_at))}}</th>
+                            <th>{{$pago->detalle}}</th>
+                            <th>{{$pago->monto}}</th>
                             <th>Pagado</th>
-                            <th>200 Bs.</th>
+                            <th>{{$pago->monto}}</th>
                         </tr>
+                        @empty
+                           No hay pagos realizados
+                        @endforelse
+                        
                         <tr>
                             <th></th>
                             <th></th>
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th>400 Bs.</th>
+                            <th>{{$usuario->pagos->sum('monto')}}</th>
                         </tr>
                     </tbody>
                 </table>

@@ -61,4 +61,8 @@ class User extends Authenticatable
     public function solicitud_parqueo(){
         return $this->hasMany(SolicitudParqueo::class,'usuario_id');
     }
+
+    public function pagos(){
+        return $this->hasMany(pagoqr::class,'usuario_id');
+    }
 }
