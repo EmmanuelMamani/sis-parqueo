@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostsTableComentarios extends Migration
+class CreateSolicitudParqueosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreatePostsTableComentarios extends Migration
      */
     public function up()
     {
-        Schema::create('comentarios2', function (Blueprint $table) {
+        Schema::create('solicitud_parqueos', function (Blueprint $table) {
             $table->id();
-            $table->string("nombre")->nullable();
-            $table->string("comentarios")->nullable();
+            $table->integer('usuario_id');
+            $table->date('fecha');
+            $table->time('hora_inicio');
+            $table->time('hora_fin');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreatePostsTableComentarios extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('solicitud_parqueos');
     }
 }

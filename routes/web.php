@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehiculoController;
 use App\Http\Controllers\Controllerscomentarios;
 use App\Http\Controllers\Controlleranuncios;
+use App\Http\Controllers\parqueoController;
 use App\Http\Controllers\zonaController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
@@ -186,7 +187,8 @@ Route::post('/anuncios', [Controlleranuncios::class, 'store'])
 
 
     /*******************************rutas */
-    Route::get('/solicitar_parqueo',function(){return view('solicitar_parqueo');})->name('solicitar_parqueo');
+    Route::get('/solicitar_parqueo',[parqueoController::class,'vista'])->name('solicitar_parqueo');
+    Route::post('/solicitar',[parqueoController::class,'registrar'])->name('solicitar');
     Route::get('/cuotas_cliente/{id}',function($id){$usuario=User::find($id);return view('cuotas_clientes',['usuario'=>$usuario]);})->name('cuotas_cliente');
     Route::get('/reservas',function(){return view('reservas');})->name('reservas');
     Route::get('/responder_reserva',function(){return view('responder_solicitud');})->name('responder_solicitud');
