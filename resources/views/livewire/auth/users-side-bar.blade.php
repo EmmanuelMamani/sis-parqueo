@@ -40,6 +40,10 @@
                 <a href="{{ route('anuncios') }}" class="nav-link px-0 align-middle ">
                     <i class="fs-4 bi-p-square-fill"></i> <span class="ms-1 d-none d-sm-inline">Anuncios</span></a>
             </li>
+            <li>
+                <a href="{{ route('notificaciones_enviadas') }}" class="nav-link px-0 align-middle ">
+                    <i class="fs-4 bi-p-square-fill"></i> <span class="ms-1 d-none d-sm-inline">Notificaciones</span></a>
+            </li>
             @endif
             @if (implode(', ', Auth::user()->roles->pluck('name')->toArray())== 'Cliente')
             <li>
@@ -58,6 +62,10 @@
             <li>
                 <a href="{{route('Comentarios')}}" class="nav-link px-0 align-middle ">
                     <i class="fs-4 bi-p-square-fill"></i> <span class="ms-1 d-none d-sm-inline">Comentarios</span></a>
+            </li>
+            <li>
+                <a href="{{ route('notificaciones') }}" class="nav-link px-0 align-middle ">
+                    <i class="fs-4 bi-p-square-fill"></i> <span class="ms-1 d-none d-sm-inline">Notificaciones</span></a>
             </li>
             @endif
                 @can('invitado.completar', Model::class)

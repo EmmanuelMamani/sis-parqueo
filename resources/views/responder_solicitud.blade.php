@@ -7,7 +7,9 @@
         <span>Hora: 15:45</span><br>
         <label for="">Seleccionar parqueo:</label>
         <select name="" id="" class="form-select">
-            <option value="">1</option>
+            @foreach ($parqueos as $parqueo)
+                <option value="{{$parqueo->id}}">{{$parqueo->numero. "-". $parqueo->zona->nombre}}</option>
+            @endforeach
         </select>
         <div class="row">
             <button class="col btn" id="asignar">Registrar</button>
