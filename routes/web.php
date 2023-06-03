@@ -15,6 +15,8 @@ use App\Http\Controllers\Controlleranuncios;
 use App\Http\Controllers\parqueoController;
 use App\Http\Controllers\zonaController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\notificacionController;
+use App\Models\parqueo;
 use App\Models\User;
 
 /*
@@ -190,7 +192,13 @@ Route::post('/anuncios', [Controlleranuncios::class, 'store'])
     Route::get('/solicitar_parqueo',[parqueoController::class,'vista'])->name('solicitar_parqueo');
     Route::post('/solicitar',[parqueoController::class,'registrar'])->name('solicitar');
     Route::get('/cuotas_cliente/{id}',function($id){$usuario=User::find($id);return view('cuotas_clientes',['usuario'=>$usuario]);})->name('cuotas_cliente');
-    Route::get('/reservas',function(){return view('reservas');})->name('reservas');
-    Route::get('/responder_reserva',function(){return view('responder_solicitud');})->name('responder_solicitud');
+    Route::get('/reservas',function(){return view('reservas'); })->name('reservas');
+    Route::get('/responder_reserva',function(){
+        $parqueos=parqueo::all();
+        return view('responder_solicitud',['parqueos'=>$parqueos]);})->name('responder_solicitud');
 
     Route::post('/registrar_zona',[zonaController::class,'registrarZona'])->name('registrar_zona');
+    Route::get('/notificaciones',[notificacionController::class,'notificaciones'])->name('notificaciones');
+    Route::get('/notificaciones_enviadas',[notificacionController::class,'notificacionesEnviadas'])->name('notificaciones_enviadas');
+    Route::get('/redactar',[notificacionController::class,'redactar'])->name('redactar');
+    Route::post('/enviar_notificacion',[notificacionController::class,'enviar'])->name('enviar_notificacion');
