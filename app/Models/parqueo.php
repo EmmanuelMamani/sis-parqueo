@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class zona extends Model
+class parqueo extends Model
 {
     use HasFactory;
-    public function parqueos(){
-        return $this->hasMany(parqueo::class);
+    public function zona(){
+        return $this->belongsTo(zona::class);
     }
 }
