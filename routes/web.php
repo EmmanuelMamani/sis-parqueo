@@ -190,3 +190,5 @@ Route::post('/anuncios', [Controlleranuncios::class, 'store'])
     Route::get('/cuotas_cliente/{id}',function($id){$usuario=User::find($id);return view('cuotas_clientes',['usuario'=>$usuario]);})->name('cuotas_cliente');
     Route::get('/reservas',function(){return view('reservas');})->name('reservas');
     Route::get('/responder_reserva',function(){return view('responder_solicitud');})->name('responder_solicitud');
+
+    Route::post('/registrar_zona',[zonaController::class,'registrarZona'])->name('registrar_zona');
