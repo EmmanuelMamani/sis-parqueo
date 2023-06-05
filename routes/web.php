@@ -200,3 +200,6 @@ Route::post('/anuncios', [Controlleranuncios::class, 'store'])
     Route::get('/notificaciones_enviadas',[notificacionController::class,'notificacionesEnviadas'])->name('notificaciones_enviadas');
     Route::get('/redactar',[notificacionController::class,'redactar'])->name('redactar');
     Route::post('/enviar_notificacion',[notificacionController::class,'enviar'])->name('enviar_notificacion');
+    Route::post('/editar_zona',[zonaController::class,'editar'])->name('editar_zona');
+    Route::get('/crear_convocatoria' , function(){return view('crear_convocatoria');})->name('crear_convocatoria');
+    Route::get('convocatorias',function(){return view('convocatorias');})->name('convocatorias');
