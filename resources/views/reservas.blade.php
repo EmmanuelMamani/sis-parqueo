@@ -14,12 +14,17 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @forelse ($solicitudes as $solicitud)
                     <tr> 
-                        <th>1</th>
-                        <th>Nombre Usuario</th>
-                        <th>30/05/2023</th>
-                        <th><a href="{{route('responder_solicitud')}}">Responder</a></th>
+                        <th>{{$loop->iteration}}</th>
+                        <th>{{$solicitud->usuario->name}}</th>
+                        <th>{{$solicitud->fecha}}</th>
+                        <th><a href="{{route('responder_solicitud',['id'=>$solicitud->id])}}">Responder</a></th>
                     </tr>
+                    @empty
+                        
+                    @endforelse
+                    
                 </tbody>
             </table>
         </div>

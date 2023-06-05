@@ -11,4 +11,8 @@ class parqueo extends Model
     public function zona(){
         return $this->belongsTo(zona::class);
     }
+
+    public function respuestas(){
+        return $this->hasMany(Respuesta::class,'parqueo_id');
+    }
 }

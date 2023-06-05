@@ -51,22 +51,27 @@ class pagosqrcontroller extends Controller
         $pago->ci = $request['ci'];
         $pago->detalle = $request['detalle'];
         $pago->monto= $request['monto'];
-        $pago->usuario_id = $user->id;
+       // $pago->usuario_id = $user->id;
       
-        $imagen = $request->file('comprobante')->store('public/imagenes');
-        $url = Storage::url($imagen);
-        $pago->comprobante = $url;
+        if($request->file('comprobante')!=null){
+            $imagen = $request->file('comprobante')->store('public/imagenes');
+            $url = Storage::url($imagen);
+            $pago->comprobante = $url;
+        }else{
+            $pago->comprobante="";
+        }
+     
 
         //$personas->detalle = $request['detalle'];
         $pago->save();
-        $categorias = pagoqr::all();
-        $pdf = Pdf::loadView('pagoqr.pdf', \compact('categorias'));
+       // $categorias = pagoqr::all();
+       // $pdf = Pdf::loadView('pagoqr.pdf', \compact('categorias'));
         
 
         
-       return $pdf->stream();
+      // return $pdf->stream();
 
-       //return redirect()->back()->with('status','El pago se efectuo exitosamente! ');
+       return redirect()->back()->with('status','El pago se efectuo exitosamente! ');
         
     }
 }

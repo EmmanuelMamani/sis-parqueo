@@ -86,7 +86,7 @@
                                             <option value="{{$usuario->id}}">{{$usuario->name}}</option>
                                         @endif
                                     @empty
-                                        <option value="{{$usuario->id}}">{{$usuario->name}}</option>
+                                        <option value=""></option>
                                     @endforelse
                                 </select>
                                 @error('nombre')
@@ -171,12 +171,6 @@
                                     placeholder="Ingrese monto de pago" value=>
                                 <br>
                                 <br>
-<<<<<<< HEAD
-
-
-
-                                <div>
-=======
                                 <h1 class="subtitulos2">Elegir tipo de pago</h1>
                                 <select name="tipo" id="tipo" onchange="cambiar()">
                                     <option value="QR">QR</option>
@@ -186,7 +180,6 @@
                                 <br>
                                 
                                 <div id=inputComprobante>
->>>>>>> 97cd3406b968052cf9c683c264c6eebba45e8f51
                                     <label for="nombre" class="comprobante">Insertar Comprobante</label>
                                     <input align=" center" class="controls3" type="file" name="comprobante" accept="image/*"
                                     id="comprobante" placeholder="Ingresa hola salida">
