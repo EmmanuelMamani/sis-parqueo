@@ -8,6 +8,7 @@ use App\Models\Respuesta;
 use App\Models\SolicitudParqueo;
 use App\Models\Vehiculo;
 use Illuminate\Http\Request;
+use App\Models\zona;
 use Illuminate\Support\Facades\Auth;
 
 class parqueoController extends Controller
@@ -35,7 +36,9 @@ class parqueoController extends Controller
     public function responder($id){
         $parqueos=parqueo::all();
         $solicitud=SolicitudParqueo::find($id);
-        return view('responder_solicitud',['parqueos'=>$parqueos,'solicitud'=>$solicitud]);
+        $ocupados= SolicitudParqueo::all()->where('respondido',1)->where('fecha',$solicitud->fecha);
+        $zonas=zona::all();
+        return view('responder_solicitud',['parqueos'=>$parqueos,'solicitud'=>$solicitud, 'ocupados'=>$ocupados,'zonas'=>$zonas]);
     }
 
     public function registrar_respuesta(Request $request){

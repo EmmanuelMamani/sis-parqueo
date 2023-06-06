@@ -1,14 +1,25 @@
 @extends('vista')
 @section('main')
-    <h3>Zonas</h3>
-    @foreach ( $zonas as $zona)
-            <h4>{{$zona->nombre}}</h4>
-                <div class="d-flex flex-wrap">
-                    @foreach ($zona->parqueos as $parqueo)
-                        <div class="col-3 libre" id="{{$parqueo->id}}">{{$parqueo->numero}}</div>
-                    @endforeach
-                </div>
-    @endforeach
+    <div class="row">
+        <div class="col">
+            <h3>Zonas</h3>
+            @foreach ( $zonas as $zona)
+                    <h4>{{$zona->nombre}}</h4>
+                        <div class="d-flex flex-wrap">
+                            @foreach ($zona->parqueos as $parqueo)
+                                <div class="col-3 libre" id="{{$parqueo->id}}">{{$parqueo->numero}}</div>
+                            @endforeach
+                        </div>
+            @endforeach
+        </div>
+        <div class="col">
+            <img src="{{asset('img/planoparqueo3.jpg')}}" alt="" width="500">
+            <form action="" class="mt-3">
+            <input type="file" name="imagen">
+                <input type="submit" value="Subir" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
     <div>
         <form action="{{route('registrar_zona')}}" method="POST">
             @csrf
