@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehiculoController;
 use App\Http\Controllers\Controllerscomentarios;
 use App\Http\Controllers\Controlleranuncios;
+use App\Http\Controllers\convocatoriaController;
 use App\Http\Controllers\parqueoController;
 use App\Http\Controllers\zonaController;
 use Illuminate\Support\Facades\Route;
@@ -203,4 +204,5 @@ Route::post('/anuncios', [Controlleranuncios::class, 'store'])
     Route::post('/enviar_notificacion',[notificacionController::class,'enviar'])->name('enviar_notificacion');
     Route::post('/editar_zona',[zonaController::class,'editar'])->name('editar_zona');
     Route::get('/crear_convocatoria' , function(){return view('crear_convocatoria');})->name('crear_convocatoria');
-    Route::get('convocatorias',function(){return view('convocatorias');})->name('convocatorias');
+    Route::get('/convocatorias',[convocatoriaController::class,'mostrar'])->name('convocatorias');
+    Route::post('/registrar_convocatoria',[convocatoriaController::class,'registrar'])->name('registrar_convocatoria');

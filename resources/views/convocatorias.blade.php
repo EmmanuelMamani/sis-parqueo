@@ -12,10 +12,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                            <tr>
-                                <th>Hay parqueos :D</th>
-                                <th><a href="#">Documento</a></th>
-                            </tr>
+                        @foreach ($convocatorias as $convocatoria)
+                        <tr>
+                            <th>{{$convocatoria->asunto}}</th>
+                            <th><a href="{{$convocatoria->url}}">Ver Documento</a></th>
+                        </tr>
+                        @endforeach
+                            
                     </tbody>
                 </table>
             </div>
