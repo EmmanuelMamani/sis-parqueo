@@ -27,7 +27,11 @@
                             <th>{{date("F",strtotime($pago->created_at))}}</th>
                             <th>{{$pago->detalle}}</th>
                             <th>{{$pago->monto}}</th>
-                            <th>Pagado</th>
+                            <th>@if ($pago->comprobante=="")
+                                Pagado-Efectivo
+                            @else
+                                Pagado-QR
+                            @endif</th>
                             <th>{{$pago->monto}}</th>
                         </tr>
                         @empty
