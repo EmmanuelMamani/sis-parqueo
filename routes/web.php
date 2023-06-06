@@ -204,5 +204,11 @@ Route::post('/anuncios', [Controlleranuncios::class, 'store'])
     Route::post('/enviar_notificacion',[notificacionController::class,'enviar'])->name('enviar_notificacion');
     Route::post('/editar_zona',[zonaController::class,'editar'])->name('editar_zona');
     Route::get('/crear_convocatoria' , function(){return view('crear_convocatoria');})->name('crear_convocatoria');
+
     Route::get('/convocatorias',[convocatoriaController::class,'mostrar'])->name('convocatorias');
     Route::post('/registrar_convocatoria',[convocatoriaController::class,'registrar'])->name('registrar_convocatoria');
+
+    Route::get('/reservas_respondidas',[parqueoController::class,'reservas_respondidas'])->name('reservas_respondidas');
+    Route::get('/cambiar_parqueo/{id}',[parqueoController::class,'ver_cambiar_parqueo'])->name('cambiar_parqueo');
+    Route::post('/cambiar',[parqueoController::class,'cambiar'])->name('cambiar');
+
