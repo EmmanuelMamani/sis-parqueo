@@ -65,8 +65,8 @@ class pagosqrcontroller extends Controller
         //$personas->detalle = $request['detalle'];
         $pago->save();
        // $categorias = pagoqr::all();
-      
-       $pdf = Pdf::loadView('prueba', ['pago'=>$pago,'tipo'=>$request->tipo]);  
+      $user=User::find($request->nombre);
+       $pdf = Pdf::loadView('comprobantePDF', ['pago'=>$pago,'tipo'=>$request->tipo,'usuario'=>$user,'request'=>$request]);  
        return $pdf->stream();
 
        //return redirect()->back()->with('status','El pago se efectuo exitosamente! ');

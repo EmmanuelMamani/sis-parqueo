@@ -63,6 +63,10 @@
                     <i class="fs-4 bi-credit-card"></i> <span class="ms-1 d-none d-sm-inline">Pagos QR</span> </a>
             </li>
             <li>
+                <a href="{{route('cuotas_cliente',['id'=>Auth::user()->id])}}" class="nav-link px-0 align-middle">
+                    <i class="fs-4 bi-credit-card"></i> <span class="ms-1 d-none d-sm-inline">Cuotas</span> </a>
+            </li>
+            <li>
                 <a href="{{ route('registrarVehiculo', $user->id) }}" class="nav-link px-0 align-middle ">
                     <i class="fs-4 bi-car-front-fill"></i> <span class="ms-1 d-none d-sm-inline">Añadir mi
                         Vehiculo</span></a>
