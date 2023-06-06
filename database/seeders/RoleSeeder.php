@@ -32,6 +32,11 @@ class RoleSeeder extends Seeder
         $role6 = Role::create(['name'=> 'Invitado']);
         Permission::create(['name' => 'admin.listar.destroy'])->syncRoles([$role1,$role3,$role4]);
         Permission::create(['name' => 'admin.crear'])->assignRole($role1);
+        Permission::create(['name' => 'admin.control.pagos'])->assignRole($role1);
+        Permission::create(['name' => 'admin.mandar.aununcios'])->assignRole($role1);
+        Permission::create(['name' => 'admin.comentar'])->assignRole($role1);
+        Permission::create(['name' => 'admin.registro.Entrada.Salida'])->assignRole($role1);
+        Permission::create(['name' => 'admin.ver.solicitudes'])->assignRole($role1);
 
         Permission::create(['name' => 'guardia.ver.horario'])->assignRole($role3);;
         Permission::create(['name' => 'guardia.registrar.vehiculo'])->syncRoles([$role3,$role4]);

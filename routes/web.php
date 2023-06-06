@@ -215,3 +215,5 @@ Route::post('/anuncios', [Controlleranuncios::class, 'store'])
 
     Route::post('/subir_imagen',[zonaController::class,'subir_imagen'])->name('subir_imagen');
 
+    
+

@@ -11,8 +11,8 @@ use Illuminate\Validation\Rules;
 use App\Models\pagoqr;
 use App\Models\User;
 use Validator;
-use Barryvdh\DomPDF\Facade\Pdf;
-
+//use Barryvdh\DomPDF\Facade\Pdf;
+use PDF;
 
 
 class pagosqrcontroller extends Controller
@@ -65,13 +65,11 @@ class pagosqrcontroller extends Controller
         //$personas->detalle = $request['detalle'];
         $pago->save();
        // $categorias = pagoqr::all();
-       // $pdf = Pdf::loadView('pagoqr.pdf', \compact('categorias'));
-        
+      
+       $pdf = Pdf::loadView('prueba', ['pago'=>$pago,'tipo'=>$request->tipo]);  
+       return $pdf->stream();
 
-        
-      // return $pdf->stream();
-
-       return redirect()->back()->with('status','El pago se efectuo exitosamente! ');
+       //return redirect()->back()->with('status','El pago se efectuo exitosamente! ');
         
     }
 }
