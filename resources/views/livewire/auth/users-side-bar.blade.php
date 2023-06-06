@@ -37,6 +37,10 @@
                     <i class="fs-4 bi-p-square-fill"></i> <span class="ms-1 d-none d-sm-inline">Reservas</span></a>
             </li>
             <li>
+                <a href="{{route('reservas_respondidas')}}" class="nav-link px-0 align-middle ">
+                    <i class="fs-4 bi-p-square-fill"></i> <span class="ms-1 d-none d-sm-inline">Reservas respondidas</span></a>
+            </li>
+            <li>
                 <a href="{{ route('anuncios') }}" class="nav-link px-0 align-middle ">
                     <i class="fs-4 bi-p-square-fill"></i> <span class="ms-1 d-none d-sm-inline">Anuncios</span></a>
             </li>

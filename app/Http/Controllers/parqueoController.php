@@ -54,4 +54,22 @@ class parqueoController extends Controller
         return redirect(route('reservas'));
 
     }
+    public function reservas_respondidas(){
+        $solicitudes=SolicitudParqueo::all()->where('respondido',true);
+        return view('reservas_respondidas',['solicitudes'=>$solicitudes]);
+    }
+    public function ver_cambiar_parqueo($id){
+        $parqueos=parqueo::all();
+        $solicitud=SolicitudParqueo::find($id);
+        $ocupados= SolicitudParqueo::all()->where('respondido',1)->where('fecha',$solicitud->fecha);
+        $zonas=zona::all();
+        return view('cambiar_parqueo',['parqueos'=>$parqueos,'solicitud'=>$solicitud, 'ocupados'=>$ocupados,'zonas'=>$zonas]);
+    }
+    public function cambiar(Request $request){
+        $solicitud=SolicitudParqueo::find($request->id);
+        $respuesta=$solicitud->respuesta;
+        $respuesta->parqueo_id=$request->parqueo;
+        $respuesta->save();
+        return redirect(route('reservas_respondidas'));
+    }
 }
