@@ -207,3 +207,4 @@ Route::post('/anuncios', [Controlleranuncios::class, 'store'])
     Route::get('/reservas_respondidas',[parqueoController::class,'reservas_respondidas'])->name('reservas_respondidas');
     Route::get('/cambiar_parqueo/{id}',[parqueoController::class,'ver_cambiar_parqueo'])->name('cambiar_parqueo');
     Route::post('/cambiar',[parqueoController::class,'cambiar'])->name('cambiar');
+    Route::get('/comprobantePDF',function(){return view('comprobantePDF');})->name('comprobantePDF');
