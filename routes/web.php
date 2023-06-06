@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\notificacionController;
 use App\Models\parqueo;
 use App\Models\User;
+use Spatie\Permission\Contracts\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -211,4 +212,6 @@ Route::post('/anuncios', [Controlleranuncios::class, 'store'])
     Route::get('/reservas_respondidas',[parqueoController::class,'reservas_respondidas'])->name('reservas_respondidas');
     Route::get('/cambiar_parqueo/{id}',[parqueoController::class,'ver_cambiar_parqueo'])->name('cambiar_parqueo');
     Route::post('/cambiar',[parqueoController::class,'cambiar'])->name('cambiar');
+
+    Route::post('/subir_imagen',[zonaController::class,'subir_imagen'])->name('subir_imagen');
 

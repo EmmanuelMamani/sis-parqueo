@@ -13,8 +13,12 @@
             @endforeach
         </div>
         <div class="col">
-            <img src="{{asset('img/planoparqueo3.jpg')}}" alt="" width="500">
-            <form action="" class="mt-3">
+            
+            <<img @if ($imagen!=null)
+            src="{{asset($imagen->url)}}"
+            @endif   src="{{asset('img/planoparqueo3.jpg')}}" alt="" width="500" >
+            <form action="{{route('subir_imagen')}}" class="mt-3" enctype="multipart/form-data" method="POST">
+                @csrf
             <input type="file" name="imagen">
                 <input type="submit" value="Subir" class="btn btn-primary">
             </form>
